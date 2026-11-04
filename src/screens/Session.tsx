@@ -7,6 +7,9 @@ import { addXp, completeLesson, recordAnswer } from '../store'
 import { checkAchievements, type Achievement } from '../achievements'
 import { sfx } from '../sound'
 import { go } from '../router'
+import { Icon } from '../components/Icon'
+import { Mascot } from '../components/Mascot'
+import { ask } from '../components/Confirm'
 
 export type Item = { key: string; ex: Exercise }
 
@@ -88,9 +91,9 @@ export function Session({ title, color, cards = [], items, mode, lessonId, onRes
   return (
     <div className="session" style={{ ['--accent' as string]: color }}>
       <header className="session-top">
-        <button className="icon-btn" aria-label="Sair" onClick={() => { if (phase === 'end' || confirm('Sair da lição? O progresso desta sessão será perdido.')) go(back) }}>✕</button>
+        <button className="icon-btn" aria-label="Sair" onClick={async () => { if (phase === 'end' || await ask({ title: 'Vai embora agora?', text: 'Se sair, o progresso desta sessão será perdido.', ok: 'Sair', cancel: 'Continuar estudando', danger: true })) go(back) }}><Icon name="close" /></button>
         <div className="bar" aria-label="Progresso"><div className="bar-fill" style={{ width: `${progress * 100}%` }} /></div>
-        {combo >= 3 && phase === 'ex' && <div className="combo">🔥{combo}</div>}
+        {combo >= 3 && phase === 'ex' && <div className="combo"><Icon name="local_fire_department" fill />{combo}</div>}
       </header>
 
       {phase === 'cards' && (
@@ -134,24 +137,24 @@ export function Session({ title, color, cards = [], items, mode, lessonId, onRes
 }
 
 function EndScreen({ title, xp, acc, stars, ach, maxCombo, onContinue, onRestart }: { title: string; xp: number; acc: number; stars: number; ach: Achievement[]; maxCombo: number; onContinue: () => void; onRestart?: () => void }) {
-  const confetti = useMemo(() => Array.from({ length: 40 }, (_, i) => ({ i, left: Math.random() * 100, delay: Math.random() * 0.8, hue: Math.floor(Math.random() * 360) })), [])
+  const confetti = useMemo(() => Array.from({ length: 40 }, (_, i) => ({ i, left: Math.random() * 100, delay: Math.random() * 0.8, hue: ['#e11d2a', '#ffc23d', '#ff7a1a', '#ffe9b8', '#be123c'][i % 5] })), [])
   return (
     <div className="end">
       <div className="confetti" aria-hidden>
-        {confetti.map((c) => <span key={c.i} style={{ left: `${c.left}%`, animationDelay: `${c.delay}s`, background: `hsl(${c.hue} 90% 60%)` }} />)}
+        {confetti.map((c) => <span key={c.i} style={{ left: `${c.left}%`, animationDelay: `${c.delay}s`, background: c.hue }} />)}
       </div>
-      <div className="end-dragon" aria-hidden>🐉</div>
-      <h1>{title}</h1>
-      <div className="stars">{[1, 2, 3].map((n) => <span key={n} className={n <= stars ? 'on' : ''}>★</span>)}</div>
+      <Mascot mood={acc >= 0.8 ? 'happy' : 'thinking'} size={190} className="end-dragon" />
+      <h1>{acc >= 0.8 ? title : 'Concluído! Bora revisar os erros?'}</h1>
+      <div className="stars">{[1, 2, 3].map((n) => <Icon key={n} name="star" fill className={n <= stars ? 'on' : ''} />)}</div>
       <div className="end-stats">
-        <div className="stat-box xp"><div className="stat-label">XP</div><div className="stat-val">+{xp}</div></div>
-        <div className="stat-box acc"><div className="stat-label">Precisão</div><div className="stat-val">{Math.round(acc * 100)}%</div></div>
-        <div className="stat-box combo-box"><div className="stat-label">Combo</div><div className="stat-val">{maxCombo}</div></div>
+        <div className="stat-box xp"><div className="stat-label"><Icon name="bolt" fill /> XP</div><div className="stat-val">+{xp}</div></div>
+        <div className="stat-box acc"><div className="stat-label"><Icon name="target" /> Precisão</div><div className="stat-val">{Math.round(acc * 100)}%</div></div>
+        <div className="stat-box combo-box"><div className="stat-label"><Icon name="local_fire_department" fill /> Combo</div><div className="stat-val">{maxCombo}</div></div>
       </div>
       {ach.length > 0 && (
         <div className="new-ach">
           <div className="new-ach-title">Conquista desbloqueada!</div>
-          {ach.map((a) => <div key={a.id} className="ach-pill"><span>{a.icon}</span> {a.title}</div>)}
+          {ach.map((a) => <div key={a.id} className="ach-pill"><Icon name={a.icon} fill /> {a.title}</div>)}
         </div>
       )}
       <div className="end-actions">

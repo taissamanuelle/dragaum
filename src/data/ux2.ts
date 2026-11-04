@@ -6,7 +6,7 @@ export const uxUnits2: Unit[] = [
     id: 'ux-ia',
     title: 'Arquitetura e fluxos',
     desc: 'IA, navegação, user flows e wireframes',
-    icon: '🗺️',
+    icon: 'account_tree',
     color: '#14b8a6',
     lessons: [
       L('ux-ia-1', 'Arquitetura da informação', [
@@ -40,7 +40,7 @@ export const uxUnits2: Unit[] = [
     id: 'ux-ui',
     title: 'UI Design visual',
     desc: 'Hierarquia, cor, tipografia, grid e estados',
-    icon: '🎨',
+    icon: 'brush',
     color: '#f43f5e',
     lessons: [
       L('ux-ui-1', 'Hierarquia visual e layout', [
@@ -96,7 +96,7 @@ export const uxUnits2: Unit[] = [
     id: 'ux-a11y',
     title: 'Acessibilidade',
     desc: 'WCAG, contraste, leitores de tela e inclusão',
-    icon: '♿',
+    icon: 'accessibility_new',
     color: '#0ea5e9',
     lessons: [
       L('ux-a11y-1', 'WCAG e POUR', [
@@ -140,13 +140,13 @@ export const uxUnits2: Unit[] = [
     id: 'ux-writing',
     title: 'UX Writing',
     desc: 'Microcopy, voz e tom, erros e CTAs',
-    icon: '✍️',
+    icon: 'edit_note',
     color: '#a855f7',
     lessons: [
       L('ux-wri-1', 'Microcopy que ajuda', [
         card('Princípios', 'Textos de interface devem ser: **claros, concisos e úteis** (e humanos).\n\n- Escreva para quem escaneia: **o mais importante primeiro**.\n- Use a palavra que o **usuário** usa.\n- Voz ativa: "Salvamos seu progresso" em vez de "O progresso foi salvo".'),
         card('Voz × tom', '- **Voz**: personalidade da marca — **constante** (ex.: Dragaum é encorajador, divertido e direto).\n- **Tom**: varia com o **contexto** e a emoção do momento. Num erro de pagamento, menos piada e mais clareza.'),
-        card('Mensagens de erro', 'Boa mensagem de erro:\n\n1. Diz **o que aconteceu**\n2. Diz **por quê** (se ajudar)\n3. Diz **como resolver**\n\nSem culpar o usuário, sem jargão, sem "Ops!" vazio.\n\n❌ "Entrada inválida."\n✅ "A senha precisa de pelo menos 8 caracteres."'),
+        card('Mensagens de erro', 'Boa mensagem de erro:\n\n1. Diz **o que aconteceu**\n2. Diz **por quê** (se ajudar)\n3. Diz **como resolver**\n\nSem culpar o usuário, sem jargão, sem "Ops!" vazio.\n\n**Ruim:** "Entrada inválida."\n**Bom:** "A senha precisa de pelo menos 8 caracteres."'),
         card('CTAs e empty states', '- CTA: **verbo + resultado** ("Começar a primeira lição").\n- Empty state: explique o que vai aparecer ali e **como começar**.\n- Confirmações destrutivas: repita a ação no botão ("Excluir conta", não "Sim").'),
       ], [
         mc('Qual o melhor botão de confirmação para apagar uma trilha?', ['Sim', 'OK', 'Apagar trilha', 'Continuar'], 2),
@@ -162,7 +162,7 @@ export const uxUnits2: Unit[] = [
     id: 'ux-ds',
     title: 'Design System',
     desc: 'Tokens, componentes, Atomic Design e governança',
-    icon: '🧩',
+    icon: 'widgets',
     color: '#6366f1',
     lessons: [
       L('ux-ds-1', 'O que é um Design System', [
@@ -214,7 +214,7 @@ export const uxUnits2: Unit[] = [
     id: 'ux-metrics',
     title: 'Métricas e estratégia',
     desc: 'HEART, funis, NPS, OKRs e experimentos',
-    icon: '📊',
+    icon: 'monitoring',
     color: '#22c55e',
     lessons: [
       L('ux-met-1', 'HEART e GSM', [
@@ -244,7 +244,7 @@ export const uxUnits2: Unit[] = [
     id: 'ux-game',
     title: 'Gamificação e comportamento',
     desc: 'Motivação, hábitos e dark patterns',
-    icon: '🎮',
+    icon: 'sports_esports',
     color: '#eab308',
     lessons: [
       L('ux-game-1', 'Motivação e hábitos', [

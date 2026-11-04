@@ -6,7 +6,7 @@ export const uxUnits1: Unit[] = [
     id: 'ux-fund',
     title: 'Fundamentos de UX',
     desc: 'UX, UI, usabilidade e como as pessoas pensam',
-    icon: '🧭',
+    icon: 'explore',
     color: '#8b5cf6',
     lessons: [
       L('ux-fund-1', 'O que é UX (e o que não é)', [
@@ -52,7 +52,7 @@ export const uxUnits1: Unit[] = [
     id: 'ux-leis',
     title: 'Leis de UX e psicologia',
     desc: 'Hick, Fitts, Miller, Jakob e outros vieses',
-    icon: '🧠',
+    icon: 'psychology',
     color: '#ec4899',
     lessons: [
       L('ux-leis-1', 'Hick, Fitts e Miller', [
@@ -98,7 +98,7 @@ export const uxUnits1: Unit[] = [
     id: 'ux-gestalt',
     title: 'Gestalt',
     desc: 'Como o cérebro organiza o que vê',
-    icon: '👁️',
+    icon: 'visibility',
     color: '#06b6d4',
     lessons: [
       L('ux-gestalt-1', 'Proximidade, semelhança e região comum', [
@@ -133,7 +133,7 @@ export const uxUnits1: Unit[] = [
     id: 'ux-heur',
     title: 'Heurísticas de Nielsen',
     desc: 'As 10 heurísticas e a avaliação heurística',
-    icon: '🔍',
+    icon: 'fact_check',
     color: '#f59e0b',
     lessons: [
       L('ux-heur-1', 'Heurísticas 1 a 5', [
@@ -144,7 +144,7 @@ export const uxUnits1: Unit[] = [
         card('4. Consistência e padrões', 'Usuários não devem se perguntar se palavras, situações ou ações diferentes significam a mesma coisa.\n\n- **Consistência interna**: dentro do seu produto.\n- **Consistência externa**: com convenções da plataforma/mercado (Lei de Jakob).'),
         card('5. Prevenção de erros', 'Melhor que boas mensagens de erro é **evitar que o erro aconteça**.\n\n- Erros de **deslize (slip)**: distração → use restrições e defaults.\n- Erros de **engano (mistake)**: modelo mental errado → clareza e confirmação.'),
       ], [
-        mc('"Salvando… ✓ Salvo" atende a qual heurística?', ['Visibilidade do status do sistema', 'Prevenção de erros', 'Flexibilidade', 'Ajuda e documentação'], 0),
+        mc('"Salvando… Salvo" atende a qual heurística?', ['Visibilidade do status do sistema', 'Prevenção de erros', 'Flexibilidade', 'Ajuda e documentação'], 0),
         mc('O botão "Desfazer envio" do Gmail é exemplo de…', ['Controle e liberdade do usuário', 'Estética minimalista', 'Reconhecimento', 'Correspondência com o mundo real'], 0),
         mc('Um app que usa "Excluir" numa tela e "Remover" em outra para a mesma ação viola…', ['Consistência e padrões', 'Visibilidade do status', 'Prevenção de erros', 'Ajuda'], 0),
         tf('Desabilitar o botão "Enviar" até o formulário estar válido é uma forma de prevenção de erros.', true),
@@ -184,7 +184,7 @@ export const uxUnits1: Unit[] = [
     id: 'ux-research',
     title: 'UX Research',
     desc: 'Métodos, perguntas, testes e síntese',
-    icon: '🔬',
+    icon: 'science',
     color: '#10b981',
     lessons: [
       L('ux-res-1', 'O mapa dos métodos', [
@@ -215,7 +215,7 @@ export const uxUnits1: Unit[] = [
       L('ux-res-3', 'Teste de usabilidade', [
         card('O que é', 'Participantes reais executam **tarefas** realistas enquanto você observa. Pode ser:\n\n- **Moderado** ou **não moderado**\n- **Presencial** ou **remoto**\n\nO protocolo **think aloud** (pensar em voz alta) pede que a pessoa verbalize o que pensa.'),
         card('5 usuários bastam?', 'Nielsen & Landauer (1993): **5 usuários** encontram cerca de **85%** dos problemas de usabilidade — para testes **qualitativos e iterativos**.\n\nMelhor: 3 rodadas de 5 do que 1 de 15. Para métricas quantitativas, são necessárias amostras maiores (~20+).'),
-        card('Escrevendo tarefas', 'Tarefas devem ser **realistas, acionáveis e sem dar a resposta**.\n\n❌ "Clique em Configurações e mude a meta diária."\n✅ "Você quer estudar só 5 minutos por dia. Ajuste o app para isso."'),
+        card('Escrevendo tarefas', 'Tarefas devem ser **realistas, acionáveis e sem dar a resposta**.\n\n**Ruim:** "Clique em Configurações e mude a meta diária."\n**Bom:** "Você quer estudar só 5 minutos por dia. Ajuste o app para isso."'),
         card('Métricas do teste', '- **Taxa de sucesso** da tarefa\n- **Tempo na tarefa**\n- **Erros**\n- **SEQ** (Single Ease Question, 1–7) após cada tarefa\n- **SUS** ao final'),
       ], [
         mc('Segundo Nielsen, quantos usuários encontram ~85% dos problemas num teste qualitativo?', ['1', '5', '20', '100'], 1),
@@ -255,7 +255,7 @@ export const uxUnits1: Unit[] = [
     id: 'ux-process',
     title: 'Design Thinking e Double Diamond',
     desc: 'Processos para resolver o problema certo',
-    icon: '💎',
+    icon: 'diamond',
     color: '#3b82f6',
     lessons: [
       L('ux-proc-1', 'Double Diamond', [

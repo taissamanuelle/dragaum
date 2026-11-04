@@ -9,7 +9,7 @@ export const courses: Record<CourseId, Course> = {
     id: 'ux',
     title: 'UX Design',
     short: 'UX',
-    icon: '🎨',
+    icon: 'palette',
     tagline: 'Fundamentos, research, UI, design system e mais',
     units: [...uxUnits1, ...uxUnits2],
   },
@@ -17,11 +17,15 @@ export const courses: Record<CourseId, Course> = {
     id: 'direcao',
     title: 'Teoria de Direção',
     short: 'CNH',
-    icon: '🚗',
+    icon: 'directions_car',
     tagline: 'Legislação, sinalização, direção defensiva e exame',
     units: [...dirUnits1, ...dirUnits2],
   },
 }
+
+/** paleta quente da identidade Dragaum, aplicada em ciclo às unidades */
+const PALETTE = ['#e11d2a', '#ea580c', '#be123c', '#c2410c', '#db2777', '#b45309', '#dc2626', '#9f1239']
+for (const c of Object.values(courses)) c.units.forEach((u, i) => { u.color = PALETTE[i % PALETTE.length] })
 
 export const courseList = [courses.ux, courses.direcao]
 

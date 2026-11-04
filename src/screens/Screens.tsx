@@ -9,6 +9,9 @@ import { ACHIEVEMENTS, checkAchievements } from '../achievements'
 import { go } from '../router'
 import { CourseSwitch } from './Path'
 import type { MC } from '../types'
+import { Icon } from '../components/Icon'
+import { Mascot } from '../components/Mascot'
+import { ask } from '../components/Confirm'
 
 /* ---------------- Lição ---------------- */
 export function LessonScreen({ id }: { id: string }) {
@@ -75,17 +78,18 @@ export function ReviewScreen() {
   return (
     <div className="page">
       <CourseSwitch />
-      <h1 className="page-title">🔁 Revisão inteligente</h1>
+      <h1 className="page-title"><Icon name="autorenew" /> Revisão inteligente</h1>
       <p className="muted">Questões que você errou voltam em intervalos crescentes (1, 3, 7, 14 e 30 dias — caixas de Leitner). Acertou 5 vezes seguidas na revisão? Dominou!</p>
       <div className="grid2">
         <div className="panel center">
+          <Mascot mood={dueByCourse.length ? 'thinking' : 'happy'} size={96} decorative />
           <div className="big-num">{dueByCourse.length}</div>
           <div className="muted">para revisar hoje em {courses[course].title}</div>
           <button className="btn primary big" disabled={!dueByCourse.length} onClick={startDue}>Revisar agora</button>
           <div className="tiny muted">{upcoming} programadas para os próximos 7 dias</div>
         </div>
         <div className="panel center">
-          <div className="big-num">🎲</div>
+          <div className="big-icon"><Icon name="casino" fill size={44} /></div>
           <div className="muted">Treino livre com questões das lições já feitas</div>
           <button className="btn big" disabled={!doneLessons.length} onClick={startFree}>Treino rápido (10)</button>
           {!doneLessons.length && <div className="tiny muted">Conclua uma lição para liberar.</div>}
@@ -102,7 +106,7 @@ export function ReviewScreen() {
           </ul>
         </div>
       )}
-      {!due.length && !hardest.length && <div className="empty">Você ainda não errou nada! 🎉 Os erros das lições aparecem aqui para revisar no momento certo.</div>}
+      {!due.length && !hardest.length && <div className="empty"><Mascot mood="happy" size={110} decorative /><span>Você ainda não errou nada! Os erros das lições aparecem aqui para revisar no momento certo.</span></div>}
     </div>
   )
 }
@@ -124,7 +128,7 @@ export function SimuladoScreen() {
     return (
       <div className="session">
         <header className="session-top">
-          <button className="icon-btn" aria-label="Sair" onClick={() => { if (confirm('Abandonar o simulado?')) setSim(null) }}>✕</button>
+          <button className="icon-btn" aria-label="Sair" onClick={async () => { if (await ask({ title: 'Abandonar o simulado?', text: 'As respostas até aqui não serão salvas.', ok: 'Abandonar', cancel: 'Continuar prova', mood: 'angry', danger: true })) setSim(null) }}><Icon name="close" /></button>
           <div className="bar"><div className="bar-fill" style={{ width: `${(sim.i / sim.keys.length) * 100}%` }} /></div>
           <div className="sim-count">{sim.i + 1}/{sim.keys.length}</div>
         </header>
@@ -155,13 +159,14 @@ export function SimuladoScreen() {
   const last = history.slice(-12)
   return (
     <div className="page">
-      <h1 className="page-title">📝 Simulado da prova teórica</h1>
+      <h1 className="page-title"><Icon name="quiz" /> Simulado da prova teórica</h1>
       <p className="muted">Formato da prova oficial do DETRAN: <b>30 questões</b> de múltipla escolha com 4 alternativas; aprovação com <b>20 acertos</b> (2/3). Sem feedback durante a prova — a correção vem no final, e os erros vão para a Revisão.</p>
 
       {finished && (
         <div className={`panel result ${finished.score / finished.total >= 2 / 3 ? 'pass' : 'fail'}`}>
+          <Mascot mood={finished.score / finished.total >= 2 / 3 ? 'happy' : 'sad'} size={130} decorative />
           <div className="big-num">{finished.score}/{finished.total}</div>
-          <div className="result-label">{finished.score / finished.total >= 2 / 3 ? '✅ Aprovada!' : '❌ Ainda não — bora revisar'}</div>
+          <div className="result-label">{finished.score / finished.total >= 2 / 3 ? <><Icon name="verified" fill /> Aprovada!</> : <><Icon name="cancel" fill /> Ainda não — bora revisar</>}</div>
           <div className="muted">Tempo: {Math.floor(finished.secs / 60)} min {finished.secs % 60} s</div>
           {finished.wrong.length > 0 && (
             <details className="wrong-list" open>
@@ -173,7 +178,7 @@ export function SimuladoScreen() {
                     {e.placa && <Placa code={e.placa} size={56} />}
                     <div>
                       <div className="wq">{e.q}</div>
-                      <div className="wa">✓ {e.o[e.a]}</div>
+                      <div className="wa"><Icon name="check" /> {e.o[e.a]}</div>
                       {e.e && <div className="tiny muted">{e.e}</div>}
                     </div>
                   </div>
@@ -225,12 +230,12 @@ export function LibraryScreen({ unitId }: { unitId?: string }) {
   return (
     <div className="page">
       <CourseSwitch />
-      <h1 className="page-title">📖 Biblioteca</h1>
+      <h1 className="page-title"><Icon name="menu_book" /> Biblioteca</h1>
       <p className="muted">Toda a teoria das lições em formato de guia de consulta.</p>
       <input className="search" placeholder="Buscar (ex.: Fitts, contraste, rotatória, PPD…)" value={q} onChange={(e) => setQ(e.target.value)} aria-label="Buscar na biblioteca" />
       {course === 'direcao' && !nq && (
         <details className="panel">
-          <summary><b>🛑 Galeria de placas</b></summary>
+          <summary><Icon name="signpost" fill /> <b>Galeria de placas</b></summary>
           <div className="placa-grid">{placaCodes.map((p) => <div key={p} className="placa-cell"><Placa code={p} size={72} /><span>{p}</span></div>)}</div>
         </details>
       )}
@@ -240,7 +245,7 @@ export function LibraryScreen({ unitId }: { unitId?: string }) {
         if (!shown.length) return null
         return (
           <details key={u.id} className="panel lib-unit" open={!!nq || unitId === u.id} id={`lib-${u.id}`} style={{ ['--uc' as string]: u.color }}>
-            <summary><span className="lib-icon">{u.icon}</span> <b>{u.title}</b> <span className="tiny muted">· {shown.length} tópicos</span></summary>
+            <summary><span className="lib-icon"><Icon name={u.icon} fill /></span> <b>{u.title}</b> <span className="tiny muted">· {shown.length} tópicos</span></summary>
             {shown.map((cd, i) => (
               <article key={i} className="lib-card">
                 <div className="tiny muted">{cd.lesson}</div>
@@ -307,7 +312,7 @@ export function ProfileScreen() {
   return (
     <div className="page">
       <div className="profile-head">
-        <div className="avatar">🐉</div>
+        <div className="avatar"><img src="/mascot/icon.webp" alt="" width={92} height={92} /></div>
         <div>
           <input className="name-input" value={s.name} placeholder="Seu nome" onChange={(e) => setState((st) => ({ ...st, name: e.target.value }))} aria-label="Seu nome" />
           <div className="muted">Nível {lv.level} · {lv.title}</div>
@@ -317,14 +322,14 @@ export function ProfileScreen() {
       </div>
 
       <div className="stats-grid">
-        <Stat icon="⚡" v={s.xp} l="XP total" />
-        <Stat icon="🔥" v={liveStreak(s)} l="Ofensiva atual" />
-        <Stat icon="🏅" v={s.bestStreak} l="Melhor ofensiva" />
-        <Stat icon="🛡️" v={s.freezes} l="Escudos de ofensiva" />
-        <Stat icon="📘" v={`${lessonsDone}/${totalLessons}`} l="Lições" />
-        <Stat icon="🎯" v={s.answered ? `${Math.round((s.correct / s.answered) * 100)}%` : '—'} l="Precisão" />
-        <Stat icon="💎" v={s.perfect} l="Lições perfeitas" />
-        <Stat icon="📝" v={s.simulados.length} l="Simulados" />
+        <Stat icon="bolt" v={s.xp} l="XP total" />
+        <Stat icon="local_fire_department" v={liveStreak(s)} l="Ofensiva atual" />
+        <Stat icon="military_tech" v={s.bestStreak} l="Melhor ofensiva" />
+        <Stat icon="shield" v={s.freezes} l="Escudos de ofensiva" />
+        <Stat icon="school" v={`${lessonsDone}/${totalLessons}`} l="Lições" />
+        <Stat icon="target" v={s.answered ? `${Math.round((s.correct / s.answered) * 100)}%` : '—'} l="Precisão" />
+        <Stat icon="diamond" v={s.perfect} l="Lições perfeitas" />
+        <Stat icon="quiz" v={s.simulados.length} l="Simulados" />
       </div>
 
       <div className="panel">
@@ -348,7 +353,7 @@ export function ProfileScreen() {
         <div className="ach-grid">
           {ACHIEVEMENTS.map((a) => (
             <div key={a.id} className={`ach ${s.achievements[a.id] ? 'on' : ''}`} title={a.desc}>
-              <div className="ach-icon">{a.icon}</div>
+              <div className="ach-badge"><Icon name={a.icon} fill /></div>
               <div className="ach-title">{a.title}</div>
               <div className="tiny muted">{a.desc}</div>
             </div>
@@ -373,9 +378,9 @@ export function ProfileScreen() {
         <label className="set-row">Sons<input type="checkbox" checked={s.sound} onChange={(e) => setState((st) => ({ ...st, sound: e.target.checked }))} /></label>
         <label className="set-row">Desbloquear todas as lições<input type="checkbox" checked={s.unlockAll} onChange={(e) => setState((st) => ({ ...st, unlockAll: e.target.checked }))} /></label>
         <div className="set-actions">
-          <button className="btn" onClick={doExport}>⬇️ Exportar progresso</button>
-          <label className="btn">⬆️ Importar<input type="file" accept="application/json" hidden onChange={(e) => e.target.files?.[0] && doImport(e.target.files[0])} /></label>
-          <button className="btn danger-outline" onClick={() => { if (confirm('Apagar todo o progresso? Isso não pode ser desfeito.')) resetAll() }}>Apagar progresso</button>
+          <button className="btn" onClick={doExport}><Icon name="download" /> Exportar progresso</button>
+          <label className="btn"><Icon name="upload" /> Importar<input type="file" accept="application/json" hidden onChange={(e) => e.target.files?.[0] && doImport(e.target.files[0])} /></label>
+          <button className="btn danger-outline" onClick={async () => { if (await ask({ title: 'Apagar todo o progresso?', text: 'XP, ofensiva, conquistas e revisões serão apagados. Isso não pode ser desfeito.', ok: 'Apagar tudo', cancel: 'Manter meu progresso', mood: 'sad', danger: true })) resetAll() }}><Icon name="delete" /> Apagar progresso</button>
         </div>
         <p className="tiny muted">Seu progresso fica salvo neste aparelho. Use exportar/importar para levar do celular para o computador.</p>
       </div>
@@ -384,9 +389,9 @@ export function ProfileScreen() {
 }
 
 function Stat({ icon, v, l }: { icon: string; v: React.ReactNode; l: string }) {
-  return <div className="stat"><div className="stat-icon">{icon}</div><div className="stat-v">{v}</div><div className="tiny muted">{l}</div></div>
+  return <div className="stat"><div className="stat-icon"><Icon name={icon} fill /></div><div className="stat-v">{v}</div><div className="tiny muted">{l}</div></div>
 }
 
 export function NotFound() {
-  return <div className="page center"><h1>🐉 Ops, caminho errado</h1><button className="btn primary" onClick={() => go('/')}>Voltar para a trilha</button></div>
+  return <div className="page center notfound"><Mascot mood="angry" size={170} /><h1>Ops, caminho errado</h1><button className="btn primary" onClick={() => go('/')}>Voltar para a trilha</button></div>
 }

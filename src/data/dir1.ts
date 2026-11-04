@@ -6,7 +6,7 @@ export const dirUnits1: Unit[] = [
     id: 'dir-cnh',
     title: 'A jornada da CNH',
     desc: 'Etapas, categorias, PPD e as regras novas',
-    icon: '🪪',
+    icon: 'badge',
     color: '#22c55e',
     lessons: [
       L('dir-cnh-1', 'Requisitos e etapas', [
@@ -52,7 +52,7 @@ export const dirUnits1: Unit[] = [
     id: 'dir-leg',
     title: 'Legislação e o SNT',
     desc: 'CTB, órgãos de trânsito e documentos',
-    icon: '⚖️',
+    icon: 'gavel',
     color: '#0ea5e9',
     lessons: [
       L('dir-leg-1', 'Sistema Nacional de Trânsito', [
@@ -96,7 +96,7 @@ export const dirUnits1: Unit[] = [
     id: 'dir-inf',
     title: 'Infrações e penalidades',
     desc: 'Pontos, multas, suspensão e cassação',
-    icon: '🚨',
+    icon: 'report',
     color: '#ef4444',
     lessons: [
       L('dir-inf-1', 'Natureza, pontos e valores', [

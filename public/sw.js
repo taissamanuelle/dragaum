@@ -1,6 +1,6 @@
 // Dragaum service worker — offline first para assets, network-first para páginas.
-const CACHE = 'dragaum-v1';
-const CORE = ['/', '/index.html', '/manifest.webmanifest', '/icons/icon.svg', '/icons/icon-192.png', '/icons/icon-512.png'];
+const CACHE = 'dragaum-v2';
+const CORE = ['/', '/index.html', '/manifest.webmanifest', '/mascot/icon.webp', '/mascot/hello.webp', '/mascot/happy.webp', '/mascot/sad.webp', '/mascot/thinking.webp', '/mascot/angry.webp', '/fonts/symbols-0.woff2', '/fonts/nunito-1.woff2', '/icons/icon-192.png', '/icons/icon-512.png'];
 
 self.addEventListener('install', (e) => {
   e.waitUntil(caches.open(CACHE).then((c) => c.addAll(CORE)).then(() => self.skipWaiting()));

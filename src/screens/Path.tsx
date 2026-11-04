@@ -3,6 +3,9 @@ import { courses, courseList } from '../data'
 import { setState, useStore } from '../store'
 import { go } from '../router'
 import type { Lesson, Unit } from '../types'
+import { Icon } from '../components/Icon'
+import { Mascot } from '../components/Mascot'
+import { today } from '../store'
 
 export function CourseSwitch() {
   const course = useStore((s) => s.course)
@@ -10,7 +13,7 @@ export function CourseSwitch() {
     <div className="course-switch" role="tablist">
       {courseList.map((c) => (
         <button key={c.id} role="tab" aria-selected={course === c.id} className={course === c.id ? 'on' : ''} onClick={() => setState((s) => ({ ...s, course: c.id }))}>
-          <span>{c.icon}</span> {c.title}
+          <Icon name={c.icon} fill={course === c.id} /> {c.title}
         </button>
       ))}
     </div>
@@ -23,6 +26,9 @@ export function Path() {
   const courseId = useStore((s) => s.course)
   const completed = useStore((s) => s.completed)
   const unlockAll = useStore((s) => s.unlockAll)
+  const name = useStore((s) => s.name)
+  const todayXp = useStore((s) => s.xpByDay[today()] ?? 0)
+  const goal = useStore((s) => s.dailyGoal)
   const course = courses[courseId]
   const [open, setOpen] = useState<string | null>(null)
 
@@ -46,6 +52,13 @@ export function Path() {
   return (
     <div className="path-screen">
       <div className="mobile-only"><CourseSwitch /></div>
+      <div className="greet">
+        <Mascot mood={todayXp >= goal ? 'happy' : 'hello'} size={92} decorative />
+        <div className="greet-bubble">
+          <b>{todayXp >= goal ? `Meta batida, ${name || 'dragoa'}!` : `Oi, ${name || 'dragoa'}!`}</b>
+          <span>{todayXp >= goal ? 'Quer revisar algo ou seguir na trilha?' : firstOpen ? `Bora? Faltam ${Math.max(goal - todayXp, 0)} XP para a meta de hoje.` : 'Você completou a trilha toda!'}</span>
+        </div>
+      </div>
       {course.units.map((u, ui) => {
         const doneN = u.lessons.filter((l) => completed[l.id]).length
         const allDone = doneN === u.lessons.length
@@ -54,10 +67,10 @@ export function Path() {
             <div className="unit-banner">
               <div>
                 <div className="unit-kicker">Unidade {ui + 1}</div>
-                <h2>{u.icon} {u.title}</h2>
+                <h2><Icon name={u.icon} fill /> {u.title}</h2>
                 <p>{u.desc}</p>
               </div>
-              <button className="btn banner-btn" onClick={() => go(`/biblioteca/${u.id}`)} title="Ler a teoria da unidade">📖 Guia</button>
+              <button className="btn banner-btn" onClick={() => go(`/biblioteca/${u.id}`)} title="Ler a teoria da unidade"><Icon name="menu_book" /> Guia</button>
             </div>
             <div className="unit-progress"><div style={{ width: `${(doneN / u.lessons.length) * 100}%` }} /></div>
             <div className="nodes">
@@ -72,7 +85,7 @@ export function Path() {
           </section>
         )
       })}
-      <div className="path-end">🏆 Fim da trilha — continue revisando para não esquecer!</div>
+      <div className="path-end"><Mascot mood="happy" size={120} decorative /><span>Fim da trilha — continue revisando para não esquecer!</span></div>
     </div>
   )
 }
@@ -82,9 +95,9 @@ function Node({ lesson, unit, off, done, stars, current, locked, open, onToggle 
     <div className="node-wrap" id={`node-${lesson.id}`} style={{ transform: `translateX(${off}px)` }}>
       {current && !open && <div className="start-bubble">COMEÇAR</div>}
       <button className={`node ${done ? 'done' : ''} ${current ? 'current' : ''} ${locked ? 'locked' : ''}`} onClick={onToggle} aria-label={`${lesson.title}${locked ? ' (bloqueada)' : ''}`} aria-expanded={open}>
-        <span className="node-icon">{locked ? '🔒' : done ? '✓' : '★'}</span>
+        <Icon name={locked ? 'lock' : done ? 'check' : 'star'} fill className="node-icon" />
       </button>
-      {done && <div className="node-stars">{[1, 2, 3].map((n) => <span key={n} className={n <= stars ? 'on' : ''}>★</span>)}</div>}
+      {done && <div className="node-stars">{[1, 2, 3].map((n) => <Icon key={n} name="star" fill className={n <= stars ? 'on' : ''} />)}</div>}
       {open && (
         <div className="pop" style={{ ['--uc' as string]: unit.color, ['--off' as string]: `${off}px` }}>
           <div className="pop-title">{lesson.title}</div>
@@ -104,7 +117,7 @@ function BossNode({ unit, off, locked, open, onToggle }: { unit: Unit; off: numb
   return (
     <div className="node-wrap" style={{ transform: `translateX(${off}px)` }}>
       <button className={`node boss ${locked ? 'locked' : ''}`} onClick={onToggle} aria-label={`Teste da unidade ${unit.title}`}>
-        <span className="node-icon">{locked ? '🔒' : '🏆'}</span>
+        <Icon name={locked ? 'lock' : 'trophy'} fill className="node-icon" />
       </button>
       {open && (
         <div className="pop" style={{ ['--uc' as string]: unit.color, ['--off' as string]: `${off}px` }}>

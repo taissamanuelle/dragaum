@@ -26,5 +26,8 @@ npm run check    # typecheck + validação do conteúdo
 npm run build    # build de produção em dist/
 ```
 
+Identidade visual: mascote Dragaum (vermelho + creme + dourado) em `public/mascot/` (hello, happy, sad, thinking, angry, icon), ícones Material Symbols Rounded e fontes auto-hospedadas em `public/fonts/` (funcionam offline).
+Ao usar um ícone novo, rode `node scripts/fonts.mjs` para regerar o subconjunto da fonte de ícones.
+
 O conteúdo fica em `src/data/` (`ux1.ts`, `ux2.ts`, `dir1.ts`, `dir2.ts`) usando os helpers de `src/data/h.ts`.
-Para trocar a logo, substitua os arquivos em `public/icons/`.
+Ícones do PWA em `public/icons/`.

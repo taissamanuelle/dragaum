@@ -5,14 +5,17 @@ import { courses, courseList } from './data'
 import { Path, CourseSwitch } from './screens/Path'
 import { BossScreen, LessonScreen, LibraryScreen, NotFound, ProfileScreen, ReviewScreen, SimuladoScreen } from './screens/Screens'
 import { ACHIEVEMENTS } from './achievements'
+import { Icon } from './components/Icon'
+import { Mascot } from './components/Mascot'
+import { ConfirmHost } from './components/Confirm'
 import type { CourseId } from './types'
 
 const NAV = [
-  { path: '/', icon: '🗺️', label: 'Trilha' },
-  { path: '/revisao', icon: '🔁', label: 'Revisão' },
-  { path: '/simulado', icon: '📝', label: 'Simulado' },
-  { path: '/biblioteca', icon: '📖', label: 'Biblioteca' },
-  { path: '/perfil', icon: '🐉', label: 'Perfil' },
+  { path: '/', icon: 'route', label: 'Trilha' },
+  { path: '/revisao', icon: 'autorenew', label: 'Revisão' },
+  { path: '/simulado', icon: 'quiz', label: 'Simulado' },
+  { path: '/biblioteca', icon: 'menu_book', label: 'Biblioteca' },
+  { path: '/perfil', icon: 'person', label: 'Perfil' },
 ]
 
 function useTheme() {
@@ -25,6 +28,15 @@ function useTheme() {
 }
 
 export default function App() {
+  return (
+    <>
+      <Router />
+      <ConfirmHost />
+    </>
+  )
+}
+
+function Router() {
   useTheme()
   const route = useRoute()
   const name = useStore((s) => s.name)
@@ -50,18 +62,19 @@ export default function App() {
   return (
     <div className="shell">
       <aside className="sidebar">
-        <div className="logo" onClick={() => go('/')}>
-          <img src="/icons/icon.svg" alt="" width={36} height={36} />
+        <a className="logo" href="#/" aria-label="Dragaum — início">
+          <img src="/mascot/icon.webp" alt="" width={48} height={48} />
           <span>Dragaum</span>
-        </div>
+        </a>
         <nav>
           {NAV.map((n) => (
-            <a key={n.path} href={`#${n.path}`} className={`nav-item ${active === n.path ? 'on' : ''}`}>
-              <span className="nav-icon">{n.icon}</span> {n.label}
+            <a key={n.path} href={`#${n.path}`} className={`nav-item ${active === n.path ? 'on' : ''}`} aria-current={active === n.path ? 'page' : undefined}>
+              <Icon name={n.icon} fill={active === n.path} className="nav-icon" /> {n.label}
               {n.path === '/revisao' && <DueBadge />}
             </a>
           ))}
         </nav>
+        <div className="sidebar-mascot"><Mascot mood="hello" size={150} decorative /></div>
       </aside>
       <div className="main-col">
         <TopBar />
@@ -73,8 +86,8 @@ export default function App() {
       </aside>
       <nav className="tabbar">
         {NAV.map((n) => (
-          <a key={n.path} href={`#${n.path}`} className={`tab ${active === n.path ? 'on' : ''}`} aria-label={n.label}>
-            <span className="tab-icon">{n.icon}</span>
+          <a key={n.path} href={`#${n.path}`} className={`tab ${active === n.path ? 'on' : ''}`} aria-label={n.label} aria-current={active === n.path ? 'page' : undefined}>
+            <span className="tab-icon-wrap"><Icon name={n.icon} fill={active === n.path} /></span>
             <span className="tab-label">{n.label}</span>
             {n.path === '/revisao' && <DueBadge />}
           </a>
@@ -89,19 +102,31 @@ function DueBadge() {
   return n ? <span className="due-badge">{n > 99 ? '99+' : n}</span> : null
 }
 
-function TopBar() {
+export function StatPills({ withDays }: { withDays?: boolean }) {
   const s = useStore((x) => x)
-  const course = courses[s.course]
+  const st = liveStreak(s)
+  return (
+    <>
+      <span className={`pill streak ${st ? 'on' : ''}`} title="Ofensiva (dias seguidos)">
+        <Icon name="local_fire_department" fill={!!st} /> {st}{withDays ? (st === 1 ? ' dia' : ' dias') : ''}
+      </span>
+      <span className="pill shield" title="Escudos de ofensiva"><Icon name="shield" fill /> {s.freezes}</span>
+      <span className="pill xp" title="XP"><Icon name="bolt" fill /> {s.xp}</span>
+    </>
+  )
+}
+
+function TopBar() {
+  const courseId = useStore((s) => s.course)
+  const course = courses[courseId]
   return (
     <header className="topbar">
       <button className="top-course" onClick={() => setState((st) => ({ ...st, course: st.course === 'ux' ? 'direcao' : 'ux' }))} title="Trocar de trilha">
-        {course.icon} <span>{course.short}</span>
+        <img src="/mascot/icon.webp" alt="" width={30} height={30} />
+        <Icon name={course.icon} fill /> <span>{course.short}</span>
+        <Icon name="swap_horiz" className="swap" />
       </button>
-      <div className="top-stats">
-        <span className={`pill streak ${liveStreak(s) ? 'on' : ''}`} title="Ofensiva">🔥 {liveStreak(s)}</span>
-        <span className="pill" title="Escudos">🛡️ {s.freezes}</span>
-        <span className="pill xp" title="XP">⚡ {s.xp}</span>
-      </div>
+      <div className="top-stats"><StatPills /></div>
     </header>
   )
 }
@@ -119,21 +144,17 @@ function Rail() {
   }
   return (
     <div className="rail-inner">
-      <div className="rail-stats">
-        <span className={`pill streak ${liveStreak(s) ? 'on' : ''}`}>🔥 {liveStreak(s)} {liveStreak(s) === 1 ? "dia" : "dias"}</span>
-        <span className="pill">🛡️ {s.freezes}</span>
-        <span className="pill xp">⚡ {s.xp}</span>
-      </div>
+      <div className="rail-stats"><StatPills withDays /></div>
       <div className="panel">
         <h3>Meta diária</h3>
         <div className="goal">
-          <svg viewBox="0 0 36 36" className="ring">
+          <svg viewBox="0 0 36 36" className="ring" aria-hidden>
             <circle cx="18" cy="18" r="15.9" className="ring-bg" />
             <circle cx="18" cy="18" r="15.9" className="ring-fg" pathLength={100} strokeDasharray={`${goalPct * 100} 100`} />
           </svg>
           <div>
             <div className="goal-num">{todayXp}/{s.dailyGoal} XP</div>
-            <div className="tiny muted">{goalPct >= 1 ? 'Meta batida! 🎉' : 'Faça uma lição para avançar'}</div>
+            <div className="tiny muted">{goalPct >= 1 ? 'Meta batida! Arrasou.' : 'Faça uma lição para avançar'}</div>
           </div>
         </div>
       </div>
@@ -146,18 +167,18 @@ function Rail() {
         <h3>Trilhas</h3>
         {courseList.map((c) => (
           <div key={c.id} className="rail-course">
-            <span>{c.icon} {c.title}</span>
+            <span><Icon name={c.icon} /> {c.title}</span>
             <div className="lvl-bar thin"><div style={{ width: `${progress(c.id) * 100}%` }} /></div>
           </div>
         ))}
       </div>
       {due > 0 && (
-        <a className="panel rail-cta" href="#/revisao">🔁 <b>{due}</b> questões esperando revisão →</a>
+        <a className="panel rail-cta" href="#/revisao"><Icon name="autorenew" /> <span className="rail-cta-text"><b>{due}</b> {due === 1 ? 'questão esperando' : 'questões esperando'} revisão</span> <Icon name="arrow_forward" /></a>
       )}
       {nextAch && (
         <div className="panel">
           <h3>Próxima conquista</h3>
-          <div className="next-ach"><span className="ach-icon">{nextAch.icon}</span><div><b>{nextAch.title}</b><div className="tiny muted">{nextAch.desc}</div></div></div>
+          <div className="next-ach"><span className="ach-badge"><Icon name={nextAch.icon} fill /></span><div><b>{nextAch.title}</b><div className="tiny muted">{nextAch.desc}</div></div></div>
         </div>
       )}
     </div>
@@ -171,8 +192,8 @@ function Onboarding({ onDone }: { onDone: () => void }) {
   return (
     <div className="onboarding">
       <div className="ob-card">
-        <img src="/icons/icon.svg" alt="" width={84} height={84} />
-        <h1>Bem-vinda ao Dragaum!</h1>
+        <Mascot mood="hello" size={170} className="ob-mascot" />
+        <h1>Bem-vinda ao <span className="brand">Dragaum</span>!</h1>
         <p className="muted">Trilhas curtas e gamificadas de <b>UX Design</b> e <b>teoria de direção</b>.</p>
         <label className="ob-label">Como posso te chamar?
           <input className="name-input" autoFocus value={name} onChange={(e) => setName(e.target.value)} placeholder="Seu nome" />
@@ -180,8 +201,8 @@ function Onboarding({ onDone }: { onDone: () => void }) {
         <div className="ob-label">Por onde quer começar?</div>
         <div className="ob-choices">
           {courseList.map((c) => (
-            <button key={c.id} className={`ob-choice ${course === c.id ? 'on' : ''}`} onClick={() => setCourse(c.id)}>
-              <span className="ob-emoji">{c.icon}</span>
+            <button key={c.id} className={`ob-choice ${course === c.id ? 'on' : ''}`} onClick={() => setCourse(c.id)} aria-pressed={course === c.id}>
+              <span className="ob-icon"><Icon name={c.icon} fill size={30} /></span>
               <b>{c.title}</b>
               <span className="tiny muted">{c.tagline}</span>
             </button>
@@ -190,10 +211,12 @@ function Onboarding({ onDone }: { onDone: () => void }) {
         <div className="ob-label">Meta diária</div>
         <div className="ob-goals">
           {[[10, 'Tranquila'], [30, 'Regular'], [50, 'Séria'], [80, 'Intensa']].map(([n, l]) => (
-            <button key={n} className={`chip ${goal === n ? 'on' : ''}`} onClick={() => setGoal(n as number)}>{l} · {n} XP</button>
+            <button key={n} className={`chip ${goal === n ? 'on' : ''}`} onClick={() => setGoal(n as number)} aria-pressed={goal === n}>{l} · {n} XP</button>
           ))}
         </div>
-        <button className="btn primary big" onClick={() => { setState((s) => ({ ...s, name: name.trim() || 'Dragoa', dailyGoal: goal, course })); onDone() }}>Começar a jornada 🐉</button>
+        <button className="btn primary big" onClick={() => { setState((s) => ({ ...s, name: name.trim() || 'Dragoa', dailyGoal: goal, course })); onDone(); go('/') }}>
+          Começar a jornada <Icon name="arrow_forward" />
+        </button>
       </div>
     </div>
   )

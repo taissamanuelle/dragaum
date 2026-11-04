@@ -6,7 +6,7 @@ export const dirUnits2: Unit[] = [
     id: 'dir-sin',
     title: 'Sinalização',
     desc: 'Placas, marcas no chão, semáforos e agentes',
-    icon: '🛑',
+    icon: 'traffic',
     color: '#f59e0b',
     lessons: [
       L('dir-sin-1', 'Placas de regulamentação', [
@@ -73,7 +73,7 @@ export const dirUnits2: Unit[] = [
     id: 'dir-circ',
     title: 'Normas de circulação',
     desc: 'Preferência, ultrapassagem, luzes e estacionamento',
-    icon: '🚦',
+    icon: 'alt_route',
     color: '#8b5cf6',
     lessons: [
       L('dir-circ-1', 'Preferência de passagem', [
@@ -121,7 +121,7 @@ export const dirUnits2: Unit[] = [
     id: 'dir-def',
     title: 'Direção defensiva',
     desc: 'Prever, antecipar e evitar acidentes',
-    icon: '🛡️',
+    icon: 'shield',
     color: '#3b82f6',
     lessons: [
       L('dir-def-1', 'Conceito e elementos', [
@@ -166,7 +166,7 @@ export const dirUnits2: Unit[] = [
     id: 'dir-ps',
     title: 'Primeiros socorros',
     desc: 'O que fazer (e não fazer) num acidente',
-    icon: '🚑',
+    icon: 'medical_services',
     color: '#ef4444',
     lessons: [
       L('dir-ps-1', 'Sinalizar, chamar ajuda e avaliar', [
@@ -198,7 +198,7 @@ export const dirUnits2: Unit[] = [
     id: 'dir-amb',
     title: 'Meio ambiente e cidadania',
     desc: 'Poluição, direção econômica e convivência',
-    icon: '🌱',
+    icon: 'eco',
     color: '#10b981',
     lessons: [
       L('dir-amb-1', 'Poluição e direção econômica', [
@@ -228,7 +228,7 @@ export const dirUnits2: Unit[] = [
     id: 'dir-mec',
     title: 'Mecânica básica',
     desc: 'Motor, painel, pneus e manutenção',
-    icon: '🔧',
+    icon: 'build',
     color: '#64748b',
     lessons: [
       L('dir-mec-1', 'Motor e sistemas', [
@@ -260,7 +260,7 @@ export const dirUnits2: Unit[] = [
     id: 'dir-pratica',
     title: 'Exame prático e manobras',
     desc: 'Nova pontuação, baliza e dicas de prova',
-    icon: '🚗',
+    icon: 'directions_car',
     color: '#f97316',
     lessons: [
       L('dir-prat-1', 'Como é avaliado o exame prático', [
@@ -292,7 +292,7 @@ export const dirUnits2: Unit[] = [
     id: 'dir-moto',
     title: 'Motos e ACC',
     desc: 'Regras específicas para duas rodas',
-    icon: '🏍️',
+    icon: 'two_wheeler',
     color: '#ec4899',
     lessons: [
       L('dir-moto-1', 'Regras para motociclistas', [

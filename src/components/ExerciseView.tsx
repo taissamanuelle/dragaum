@@ -2,6 +2,8 @@ import { useEffect, useMemo, useRef, useState } from 'react'
 import type { Exercise } from '../types'
 import { Placa } from './Placa'
 import { sfx, vibrate } from '../sound'
+import { Icon } from './Icon'
+import { Mascot } from './Mascot'
 
 export function shuffle<T>(arr: T[]): T[] {
   const a = [...arr]
@@ -204,9 +206,12 @@ export function ExerciseView({ ex, onCheck, onDone, exam, label }: Props) {
         <div className="ex-footer-inner">
           {checked !== null && (
             <div className="feedback" role="status">
-              <div className="fb-title">{checked ? `✓ ${msg}` : ex.t === 'match' ? '✗ Você errou alguns pares' : '✗ Resposta correta:'}</div>
+              <Mascot mood={checked ? 'happy' : ex.t === 'match' ? 'thinking' : 'sad'} size={84} className="fb-mascot" decorative />
+              <div className="fb-text">
+              <div className="fb-title"><Icon name={checked ? 'check_circle' : 'cancel'} fill /> {checked ? msg : ex.t === 'match' ? 'Você errou alguns pares' : 'Resposta correta:'}</div>
               {!checked && correctText && <div className="fb-answer">{correctText}</div>}
               {ex.e && <div className="fb-exp">{ex.e}</div>}
+              </div>
             </div>
           )}
           {checked === null ? (
