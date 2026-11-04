@@ -5,6 +5,7 @@ import { go } from '../router'
 import { Icon } from '../components/Icon'
 import { Mascot, type Mood } from '../components/Mascot'
 import type { CourseId } from '../types'
+import { LoginScreen } from './Account'
 
 const GOALS = [
   { xp: 10, title: 'Casual', time: '5 min por dia' },
@@ -21,6 +22,7 @@ export function Welcome({ onDone }: { onDone: () => void }) {
   const [goal, setGoal] = useState<number | null>(null)
   const fileRef = useRef<HTMLInputElement>(null)
   const [importErr, setImportErr] = useState('')
+  const [login, setLogin] = useState(false)
 
   const finish = (toLesson: boolean) => {
     const c = course ?? 'ux'
@@ -29,18 +31,21 @@ export function Welcome({ onDone }: { onDone: () => void }) {
     go(toLesson ? `/licao/${allLessons(c)[0].id}` : '/')
   }
 
+  if (login) return <LoginScreen onBack={() => setLogin(false)} onDone={() => { onDone(); go('/') }} />
+
   if (step === 0) {
     return (
       <div className="welcome">
         <div className="welcome-hero">
           <div className="welcome-glow" aria-hidden />
           <Mascot mood="hello" size={230} className="welcome-mascot" />
-          <h1 className="wordmark">dragaum</h1>
+          <h1 className="wordmark">Dragaum</h1>
           <p className="welcome-tagline">O jeito divertido de aprender <b>UX Design</b> e a <b>teoria da CNH</b>, alguns minutos por dia.</p>
         </div>
         <div className="welcome-actions">
           <button className="btn primary big" onClick={() => setStep(1)}>Começar</button>
-          <button className="btn big" onClick={() => fileRef.current?.click()}>Já tenho progresso salvo</button>
+          <button className="btn big" onClick={() => setLogin(true)}>Já tenho uma conta</button>
+          <button className="btn ghost" onClick={() => fileRef.current?.click()}>Importar arquivo de progresso</button>
           <input
             ref={fileRef}
             type="file"
@@ -55,7 +60,7 @@ export function Welcome({ onDone }: { onDone: () => void }) {
             }}
           />
           {importErr && <p className="form-error" role="alert"><Icon name="error" fill /> {importErr}</p>}
-          <p className="tiny muted center">Seu progresso fica salvo neste aparelho.</p>
+
         </div>
       </div>
     )
@@ -123,6 +128,7 @@ export function Welcome({ onDone }: { onDone: () => void }) {
             <div className="ready-item"><Icon name={course === 'direcao' ? 'directions_car' : 'palette'} fill /><span>{courseList.find((c) => c.id === course)?.title}</span></div>
             <div className="ready-item"><Icon name="flag" fill /><span>Meta de {goal} XP por dia</span></div>
             <div className="ready-item"><Icon name="local_fire_department" fill /><span>Comece hoje sua ofensiva</span></div>
+            <p className="tiny muted center">Dica: crie uma conta no Perfil para salvar o progresso na nuvem.</p>
           </div>
         )}
       </main>

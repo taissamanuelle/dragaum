@@ -26,8 +26,15 @@ npm run check    # typecheck + validação do conteúdo
 npm run build    # build de produção em dist/
 ```
 
-Identidade visual: mascote Dragaum (vermelho + creme + dourado) em `public/mascot/` (hello, happy, sad, thinking, angry, icon), ícones Material Symbols Rounded e fontes auto-hospedadas em `public/fonts/` (funcionam offline).
-Ao usar um ícone novo, rode `node scripts/fonts.mjs` para regerar o subconjunto da fonte de ícones.
+Identidade visual: mascote Dragaum (vermelho + creme + dourado) em `public/mascot/` (hello, happy, sad, thinking, angry, icon), ícones Material Symbols Rounded e fontes empacotadas no build (funcionam offline).
+Ao usar um ícone novo, rode `node scripts/fonts.mjs` para regerar o subconjunto da fonte de ícones (as fontes ficam em `src/assets/fonts` e recebem hash no build).
 
 O conteúdo fica em `src/data/` (`ux1.ts`, `ux2.ts`, `dir1.ts`, `dir2.ts`) usando os helpers de `src/data/h.ts`.
 Ícones do PWA em `public/icons/`.
+
+## Banco de dados (Supabase)
+
+- Login por e-mail e senha (Supabase Auth). Sem conta, o app funciona só neste aparelho.
+- Tabela `public.progress` (1 linha por usuária, JSON com todo o progresso) com RLS: cada pessoa só lê e grava a própria linha. SQL em `supabase/migrations/`.
+- O app salva localmente primeiro (funciona offline) e envia para o Supabase ~1,5 s após cada mudança; ao abrir, voltar à aba ou reconectar, baixa e **mescla** com o que estiver na nuvem (`src/sync.ts`).
+- Configuração em `.env.example` (`VITE_SUPABASE_URL`, `VITE_SUPABASE_ANON_KEY` — chave publicável).

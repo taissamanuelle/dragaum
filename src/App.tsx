@@ -11,6 +11,8 @@ import { ConfirmHost } from './components/Confirm'
 import type { CourseId } from './types'
 import { Welcome } from './screens/Welcome'
 import { Quests } from './components/Quests'
+import { SyncBadge } from './screens/Account'
+import { useSync } from './sync'
 
 const NAV = [
   { path: '/', icon: 'route', label: 'Trilha' },
@@ -127,7 +129,7 @@ function TopBar() {
         <span className="top-course-tile"><Icon name={course.icon} fill /></span>
         <Icon name="expand_more" className="swap" />
       </button>
-      <div className="top-stats"><StatPills /></div>
+      <div className="top-stats"><SyncBadge /><StatPills /></div>
     </header>
   )
 }
@@ -145,7 +147,8 @@ function Rail() {
   }
   return (
     <div className="rail-inner">
-      <div className="rail-stats"><StatPills withDays /></div>
+      <div className="rail-stats"><StatPills withDays /><SyncBadge /></div>
+      <CloudPromo />
       <div className="panel">
         <h3>Meta diária</h3>
         <div className="goal">
@@ -187,5 +190,17 @@ function Rail() {
         </div>
       )}
     </div>
+  )
+}
+
+function CloudPromo() {
+  const s = useSync()
+  if (!s.ready || s.userId) return null
+  return (
+    <a className="panel cloud-promo" href="#/perfil">
+      <Mascot mood="thinking" size={64} decorative />
+      <span className="cloud-text"><b>Salve seu progresso</b><span className="tiny muted">Crie uma conta para sincronizar entre aparelhos.</span></span>
+      <Icon name="arrow_forward" />
+    </a>
   )
 }

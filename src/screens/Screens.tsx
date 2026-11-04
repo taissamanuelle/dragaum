@@ -12,6 +12,7 @@ import type { MC } from '../types'
 import { Icon } from '../components/Icon'
 import { Mascot } from '../components/Mascot'
 import { ask } from '../components/Confirm'
+import { AccountCard } from './Account'
 
 /* ---------------- Lição ---------------- */
 export function LessonScreen({ id }: { id: string }) {
@@ -321,6 +322,8 @@ export function ProfileScreen() {
         </div>
       </div>
 
+      <AccountCard />
+
       <div className="stats-grid">
         <Stat icon="bolt" v={s.xp} l="XP total" />
         <Stat icon="local_fire_department" v={liveStreak(s)} l="Ofensiva atual" />
@@ -382,7 +385,7 @@ export function ProfileScreen() {
           <label className="btn"><Icon name="upload" /> Importar<input type="file" accept="application/json" hidden onChange={(e) => e.target.files?.[0] && doImport(e.target.files[0])} /></label>
           <button className="btn danger-outline" onClick={async () => { if (await ask({ title: 'Apagar todo o progresso?', text: 'XP, ofensiva, conquistas e revisões serão apagados. Isso não pode ser desfeito.', ok: 'Apagar tudo', cancel: 'Manter meu progresso', mood: 'sad', danger: true })) resetAll() }}><Icon name="delete" /> Apagar progresso</button>
         </div>
-        <p className="tiny muted">Seu progresso fica salvo neste aparelho. Use exportar/importar para levar do celular para o computador.</p>
+        <p className="tiny muted">Com a conta conectada, o progresso sincroniza sozinho. O arquivo de exportação serve como backup.</p>
       </div>
     </div>
   )

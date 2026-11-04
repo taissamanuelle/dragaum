@@ -248,3 +248,8 @@ export function dailyQuests(s: State) {
     { id: 'combo', icon: 'local_fire_department', title: 'Acerte 5 seguidas', cur: Math.min(ds.combo, 5), max: 5 },
   ]
 }
+
+export function subscribe(fn: () => void) {
+  listeners.add(fn)
+  return () => { listeners.delete(fn) }
+}
