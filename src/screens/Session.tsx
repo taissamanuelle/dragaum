@@ -3,7 +3,7 @@ import type { Card, Exercise } from '../types'
 import { ExerciseView } from '../components/ExerciseView'
 import { Md } from '../components/Md'
 import { Placa } from '../components/Placa'
-import { addXp, completeLesson, recordAnswer } from '../store'
+import { addXp, completeLesson, recordAnswer, recordCombo } from '../store'
 import { checkAchievements, type Achievement } from '../achievements'
 import { sfx } from '../sound'
 import { go } from '../router'
@@ -80,6 +80,7 @@ export function Session({ title, color, cards = [], items, mode, lessonId, onRes
       stars = acc >= 1 ? 3 : acc >= 0.7 ? 2 : 1
     }
     addXp(xp)
+    recordCombo(maxCombo)
     const ach = checkAchievements()
     sfx.win()
     setResult({ xp, acc, stars, ach })
@@ -98,16 +99,19 @@ export function Session({ title, color, cards = [], items, mode, lessonId, onRes
 
       {phase === 'cards' && (
         <div className="cards-wrap">
-          <div className="lesson-title-small">{title}</div>
+          <div className="prompt theory-prompt">
+            <Mascot mood={ci === 0 ? 'hello' : 'thinking'} size={78} decorative />
+            <div className="speech small">{ci === 0 ? <>Vamos aprender: <b>{title}</b></> : ci + 1 === cards.length ? 'Último card! Depois a gente pratica.' : 'Continua comigo…'}</div>
+          </div>
           <article className="theory-card" key={ci}>
-            <div className="theory-step">Teoria {ci + 1}/{cards.length}</div>
+            <div className="theory-dots" aria-label={`Card ${ci + 1} de ${cards.length}`}>{cards.map((_, i) => <span key={i} className={i <= ci ? 'on' : ''} />)}</div>
             <h2>{cards[ci].h}</h2>
             {cards[ci].placa && <div className="ex-placa"><Placa code={cards[ci].placa!} size={110} /></div>}
             <Md text={cards[ci].b} />
           </article>
           <div className="ex-footer">
             <div className="ex-footer-inner row">
-              <button className="btn ghost" disabled={ci === 0} onClick={() => setCi(ci - 1)}>Voltar</button>
+              <button className="icon-btn outline" disabled={ci === 0} onClick={() => setCi(ci - 1)} aria-label="Card anterior"><Icon name="arrow_back" /></button>
               {ci + 1 < cards.length ? (
                 <button className="btn primary big" onClick={() => setCi(ci + 1)} autoFocus>Próximo</button>
               ) : (
@@ -146,10 +150,11 @@ function EndScreen({ title, xp, acc, stars, ach, maxCombo, onContinue, onRestart
       <Mascot mood={acc >= 0.8 ? 'happy' : 'thinking'} size={190} className="end-dragon" />
       <h1>{acc >= 0.8 ? title : 'Concluído! Bora revisar os erros?'}</h1>
       <div className="stars">{[1, 2, 3].map((n) => <Icon key={n} name="star" fill className={n <= stars ? 'on' : ''} />)}</div>
+      <p className="end-sub">{acc >= 1 ? 'Perfeito, sem nenhum erro!' : acc >= 0.8 ? 'Mandou muito bem.' : 'Os erros já foram para a Revisão.'}</p>
       <div className="end-stats">
-        <div className="stat-box xp"><div className="stat-label"><Icon name="bolt" fill /> XP</div><div className="stat-val">+{xp}</div></div>
-        <div className="stat-box acc"><div className="stat-label"><Icon name="target" /> Precisão</div><div className="stat-val">{Math.round(acc * 100)}%</div></div>
-        <div className="stat-box combo-box"><div className="stat-label"><Icon name="local_fire_department" fill /> Combo</div><div className="stat-val">{maxCombo}</div></div>
+        <div className="stat-box xp"><div className="stat-label">Total de XP</div><div className="stat-val"><Icon name="bolt" fill /> {xp}</div></div>
+        <div className="stat-box acc"><div className="stat-label">Precisão</div><div className="stat-val"><Icon name="target" /> {Math.round(acc * 100)}%</div></div>
+        <div className="stat-box combo-box"><div className="stat-label">Combo</div><div className="stat-val"><Icon name="local_fire_department" fill /> {maxCombo}</div></div>
       </div>
       {ach.length > 0 && (
         <div className="new-ach">

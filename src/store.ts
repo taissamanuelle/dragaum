@@ -3,6 +3,7 @@ import type { CourseId } from './types'
 
 export type LessonProgress = { stars: number; best: number; times: number; at: string }
 export type SrsItem = { box: number; due: string; wrong: number }
+export type DayStats = { lessons: number; combo: number }
 export type SimuladoResult = { at: string; score: number; total: number; secs: number }
 
 export type State = {
@@ -11,6 +12,7 @@ export type State = {
   course: CourseId
   xp: number
   xpByDay: Record<string, number>
+  day: Record<string, DayStats>
   streak: number
   bestStreak: number
   lastDay: string | null
@@ -37,6 +39,7 @@ const initial = (): State => ({
   course: 'ux',
   xp: 0,
   xpByDay: {},
+  day: {},
   streak: 0,
   bestStreak: 0,
   lastDay: null,
@@ -199,8 +202,11 @@ export function completeLesson(id: string, accuracy: number) {
   const stars = accuracy >= 1 ? 3 : accuracy >= 0.8 ? 2 : 1
   setState((s) => {
     const prev = s.completed[id]
+    const d = today()
+    const ds = s.day[d] ?? { lessons: 0, combo: 0 }
     return {
       ...s,
+      day: { ...s.day, [d]: { ...ds, lessons: ds.lessons + 1 } },
       perfect: s.perfect + (accuracy >= 1 ? 1 : 0),
       completed: {
         ...s.completed,
@@ -220,4 +226,25 @@ export function dueReviews(s: State) {
   return Object.entries(s.srs)
     .filter(([, v]) => v.due <= d)
     .map(([k]) => k)
+}
+
+export function recordCombo(n: number) {
+  setState((s) => {
+    const d = today()
+    const ds = s.day[d] ?? { lessons: 0, combo: 0 }
+    if (n <= ds.combo) return s
+    return { ...s, day: { ...s.day, [d]: { ...ds, combo: n } } }
+  })
+}
+
+/** missões do dia (renovam à meia-noite) */
+export function dailyQuests(s: State) {
+  const d = today()
+  const ds = s.day[d] ?? { lessons: 0, combo: 0 }
+  const xp = s.xpByDay[d] ?? 0
+  return [
+    { id: 'xp', icon: 'bolt', title: `Ganhe ${s.dailyGoal} XP`, cur: Math.min(xp, s.dailyGoal), max: s.dailyGoal },
+    { id: 'lessons', icon: 'school', title: 'Complete 2 lições', cur: Math.min(ds.lessons, 2), max: 2 },
+    { id: 'combo', icon: 'local_fire_department', title: 'Acerte 5 seguidas', cur: Math.min(ds.combo, 5), max: 5 },
+  ]
 }

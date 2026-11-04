@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { useRoute, go } from './router'
+import { useRoute } from './router'
 import { dueReviews, getState, levelInfo, liveStreak, setState, today, useStore } from './store'
 import { courses, courseList } from './data'
 import { Path, CourseSwitch } from './screens/Path'
@@ -9,6 +9,8 @@ import { Icon } from './components/Icon'
 import { Mascot } from './components/Mascot'
 import { ConfirmHost } from './components/Confirm'
 import type { CourseId } from './types'
+import { Welcome } from './screens/Welcome'
+import { Quests } from './components/Quests'
 
 const NAV = [
   { path: '/', icon: 'route', label: 'Trilha' },
@@ -42,7 +44,7 @@ function Router() {
   const name = useStore((s) => s.name)
   const [onboarded, setOnboarded] = useState(() => !!getState().name || getState().xp > 0)
 
-  if (!onboarded && !name) return <Onboarding onDone={() => setOnboarded(true)} />
+  if (!onboarded && !name) return <Welcome onDone={() => setOnboarded(true)} />
 
   const [, seg, arg] = route.split('/')
   if (seg === 'licao' && arg) return <LessonScreen key={arg} id={arg} />
@@ -121,10 +123,9 @@ function TopBar() {
   const course = courses[courseId]
   return (
     <header className="topbar">
-      <button className="top-course" onClick={() => setState((st) => ({ ...st, course: st.course === 'ux' ? 'direcao' : 'ux' }))} title="Trocar de trilha">
-        <img src="/mascot/icon.webp" alt="" width={30} height={30} />
-        <Icon name={course.icon} fill /> <span>{course.short}</span>
-        <Icon name="swap_horiz" className="swap" />
+      <button className="top-course" onClick={() => setState((st) => ({ ...st, course: st.course === 'ux' ? 'direcao' : 'ux' }))} aria-label={`Trilha atual: ${course.title}. Toque para trocar`}>
+        <span className="top-course-tile"><Icon name={course.icon} fill /></span>
+        <Icon name="expand_more" className="swap" />
       </button>
       <div className="top-stats"><StatPills /></div>
     </header>
@@ -159,6 +160,10 @@ function Rail() {
         </div>
       </div>
       <div className="panel">
+        <div className="panel-head"><h3>Missões do dia</h3><span className="tiny muted">renovam à meia-noite</span></div>
+        <Quests />
+      </div>
+      <div className="panel">
         <h3>Nível {lv.level} · {lv.title}</h3>
         <div className="lvl-bar"><div style={{ width: `${lv.pct * 100}%` }} /></div>
         <div className="tiny muted">{lv.next - s.xp} XP para o próximo</div>
@@ -181,43 +186,6 @@ function Rail() {
           <div className="next-ach"><span className="ach-badge"><Icon name={nextAch.icon} fill /></span><div><b>{nextAch.title}</b><div className="tiny muted">{nextAch.desc}</div></div></div>
         </div>
       )}
-    </div>
-  )
-}
-
-function Onboarding({ onDone }: { onDone: () => void }) {
-  const [name, setName] = useState('')
-  const [goal, setGoal] = useState(30)
-  const [course, setCourse] = useState<CourseId>('ux')
-  return (
-    <div className="onboarding">
-      <div className="ob-card">
-        <Mascot mood="hello" size={170} className="ob-mascot" />
-        <h1>Bem-vinda ao <span className="brand">Dragaum</span>!</h1>
-        <p className="muted">Trilhas curtas e gamificadas de <b>UX Design</b> e <b>teoria de direção</b>.</p>
-        <label className="ob-label">Como posso te chamar?
-          <input className="name-input" autoFocus value={name} onChange={(e) => setName(e.target.value)} placeholder="Seu nome" />
-        </label>
-        <div className="ob-label">Por onde quer começar?</div>
-        <div className="ob-choices">
-          {courseList.map((c) => (
-            <button key={c.id} className={`ob-choice ${course === c.id ? 'on' : ''}`} onClick={() => setCourse(c.id)} aria-pressed={course === c.id}>
-              <span className="ob-icon"><Icon name={c.icon} fill size={30} /></span>
-              <b>{c.title}</b>
-              <span className="tiny muted">{c.tagline}</span>
-            </button>
-          ))}
-        </div>
-        <div className="ob-label">Meta diária</div>
-        <div className="ob-goals">
-          {[[10, 'Tranquila'], [30, 'Regular'], [50, 'Séria'], [80, 'Intensa']].map(([n, l]) => (
-            <button key={n} className={`chip ${goal === n ? 'on' : ''}`} onClick={() => setGoal(n as number)} aria-pressed={goal === n}>{l} · {n} XP</button>
-          ))}
-        </div>
-        <button className="btn primary big" onClick={() => { setState((s) => ({ ...s, name: name.trim() || 'Dragoa', dailyGoal: goal, course })); onDone(); go('/') }}>
-          Começar a jornada <Icon name="arrow_forward" />
-        </button>
-      </div>
     </div>
   )
 }

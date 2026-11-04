@@ -126,7 +126,14 @@ export function ExerciseView({ ex, onCheck, onDone, exam, label }: Props) {
     <div className="exercise">
       <div className="ex-body">
         <div className="ex-kind">{title}</div>
-        <h2 className="ex-q">{ex.q}</h2>
+        {(ex.t === 'mc' || ex.t === 'tf') && !ex.placa ? (
+          <div className="prompt">
+            <Mascot mood={checked === true ? 'happy' : checked === false ? 'sad' : 'thinking'} size={96} className="prompt-mascot" decorative />
+            <h2 className="speech ex-q">{ex.q}</h2>
+          </div>
+        ) : (
+          <h2 className="ex-q">{ex.q}</h2>
+        )}
         {'placa' in ex && ex.placa && (
           <div className="ex-placa"><Placa code={ex.placa} size={140} /></div>
         )}
@@ -206,9 +213,9 @@ export function ExerciseView({ ex, onCheck, onDone, exam, label }: Props) {
         <div className="ex-footer-inner">
           {checked !== null && (
             <div className="feedback" role="status">
-              <Mascot mood={checked ? 'happy' : ex.t === 'match' ? 'thinking' : 'sad'} size={84} className="fb-mascot" decorative />
+              {!((ex.t === 'mc' || ex.t === 'tf') && !ex.placa) && <Mascot mood={checked ? 'happy' : ex.t === 'match' ? 'thinking' : 'sad'} size={72} className="fb-mascot" decorative />}
               <div className="fb-text">
-              <div className="fb-title"><Icon name={checked ? 'check_circle' : 'cancel'} fill /> {checked ? msg : ex.t === 'match' ? 'Você errou alguns pares' : 'Resposta correta:'}</div>
+              <div className="fb-title"><span className="fb-badge"><Icon name={checked ? 'check' : 'close'} /></span> {checked ? msg : ex.t === 'match' ? 'Você errou alguns pares' : 'Resposta correta:'}</div>
               {!checked && correctText && <div className="fb-answer">{correctText}</div>}
               {ex.e && <div className="fb-exp">{ex.e}</div>}
               </div>
