@@ -92,7 +92,7 @@ export function Path() {
           </section>
         )
       })}
-      <div className="path-end"><Mascot mood="happy" size={120} decorative /><span>Fim da trilha — continue revisando para não esquecer!</span></div>
+      <div className="path-end"><Mascot mood="happy" size={120} decorative /><span>Fim da trilha! Continue revisando para não esquecer.</span></div>
     </div>
   )
 }

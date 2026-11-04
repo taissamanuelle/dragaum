@@ -80,7 +80,7 @@ export function ReviewScreen() {
     <div className="page">
       <CourseSwitch />
       <h1 className="page-title"><Icon name="autorenew" /> Revisão inteligente</h1>
-      <p className="muted">Questões que você errou voltam em intervalos crescentes (1, 3, 7, 14 e 30 dias — caixas de Leitner). Acertou 5 vezes seguidas na revisão? Dominou!</p>
+      <p className="muted">Questões que você errou voltam em intervalos crescentes (1, 3, 7, 14 e 30 dias, no sistema de caixas de Leitner). Acertou 5 vezes seguidas na revisão? Dominou!</p>
       <div className="grid2">
         <div className="panel center">
           <Mascot mood={dueByCourse.length ? 'thinking' : 'happy'} size={96} decorative />
@@ -102,7 +102,7 @@ export function ReviewScreen() {
           <ul className="hard-list">
             {hardest.map(([k, v]) => {
               const e = getExercise(k)!
-              return <li key={k}><span className="badge">{v.wrong}× erro</span> <span>{e.ex.q}</span> <span className="tiny muted">— {e.ref.lesson.title}</span></li>
+              return <li key={k}><span className="badge">{v.wrong}× erro</span> <span>{e.ex.q}</span> <span className="tiny muted">· {e.ref.lesson.title}</span></li>
             })}
           </ul>
         </div>
@@ -161,13 +161,13 @@ export function SimuladoScreen() {
   return (
     <div className="page">
       <h1 className="page-title"><Icon name="quiz" /> Simulado da prova teórica</h1>
-      <p className="muted">Formato da prova oficial do DETRAN: <b>30 questões</b> de múltipla escolha com 4 alternativas; aprovação com <b>20 acertos</b> (2/3). Sem feedback durante a prova — a correção vem no final, e os erros vão para a Revisão.</p>
+      <p className="muted">Formato da prova oficial do DETRAN: <b>30 questões</b> de múltipla escolha com 4 alternativas; aprovação com <b>20 acertos</b> (2/3). Sem feedback durante a prova, a correção vem no final, e os erros vão para a Revisão.</p>
 
       {finished && (
         <div className={`panel result ${finished.score / finished.total >= 2 / 3 ? 'pass' : 'fail'}`}>
           <Mascot mood={finished.score / finished.total >= 2 / 3 ? 'happy' : 'sad'} size={130} decorative />
           <div className="big-num">{finished.score}/{finished.total}</div>
-          <div className="result-label">{finished.score / finished.total >= 2 / 3 ? <><Icon name="verified" fill /> Aprovada!</> : <><Icon name="cancel" fill /> Ainda não — bora revisar</>}</div>
+          <div className="result-label">{finished.score / finished.total >= 2 / 3 ? <><Icon name="verified" fill /> Aprovada!</> : <><Icon name="cancel" fill /> Ainda não. Bora revisar</>}</div>
           <div className="muted">Tempo: {Math.floor(finished.secs / 60)} min {finished.secs % 60} s</div>
           {finished.wrong.length > 0 && (
             <details className="wrong-list" open>
@@ -265,19 +265,19 @@ export function LibraryScreen({ unitId }: { unitId?: string }) {
 
 function Sources({ course }: { course: 'ux' | 'direcao' }) {
   const ux = [
-    ['Nielsen Norman Group — 10 Usability Heuristics', 'https://www.nngroup.com/articles/ten-usability-heuristics/'],
-    ['Design Council — The Double Diamond', 'https://www.designcouncil.org.uk/our-resources/the-double-diamond/'],
-    ['W3C — WCAG 2.2', 'https://www.w3.org/TR/WCAG22/'],
+    ['Nielsen Norman Group: 10 Usability Heuristics', 'https://www.nngroup.com/articles/ten-usability-heuristics/'],
+    ['Design Council: The Double Diamond', 'https://www.designcouncil.org.uk/our-resources/the-double-diamond/'],
+    ['W3C: WCAG 2.2', 'https://www.w3.org/TR/WCAG22/'],
     ['Laws of UX (Jon Yablonski)', 'https://lawsofux.com/'],
-    ['Atomic Design — Brad Frost', 'https://atomicdesign.bradfrost.com/'],
+    ['Atomic Design: Brad Frost', 'https://atomicdesign.bradfrost.com/'],
     ['Design Tokens Community Group (W3C)', 'https://www.designtokens.org/'],
     ['Google HEART framework (Rodden et al., 2010)', 'https://research.google/pubs/measuring-the-user-experience-on-a-large-scale-user-centered-metrics-for-web-applications/'],
   ]
   const dir = [
-    ['CTB — Lei 9.503/1997 (Planalto)', 'https://www.planalto.gov.br/ccivil_03/leis/l9503compilado.htm'],
+    ['CTB: Lei 9.503/1997 (Planalto)', 'https://www.planalto.gov.br/ccivil_03/leis/l9503compilado.htm'],
     ['Resolução CONTRAN 1.020/2025', 'https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-contran/resolucoes/Resolucao10202025.pdf'],
     ['Lei 14.071/2020 (mudanças no CTB)', 'https://www.planalto.gov.br/ccivil_03/_ato2019-2022/2020/lei/l14071.htm'],
-    ['Portal do Trânsito — novo exame prático', 'https://www.portaldotransito.com.br/noticias/fiscalizacao-e-legislacao/carteira-de-habilitacao-cnh/primeira-habilitacao/exame-da-cnh-muda-regra-historica-e-acaba-com-a-falta-eliminatoria-no-teste-pratico/'],
+    ['Portal do Trânsito: novo exame prático', 'https://www.portaldotransito.com.br/noticias/fiscalizacao-e-legislacao/carteira-de-habilitacao-cnh/primeira-habilitacao/exame-da-cnh-muda-regra-historica-e-acaba-com-a-falta-eliminatoria-no-teste-pratico/'],
     ['Resoluções do CONTRAN (gov.br)', 'https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-Senatran/resolucoes-contran'],
   ]
   const list = course === 'ux' ? ux : dir
@@ -330,7 +330,7 @@ export function ProfileScreen() {
         <Stat icon="military_tech" v={s.bestStreak} l="Melhor ofensiva" />
         <Stat icon="shield" v={s.freezes} l="Escudos de ofensiva" />
         <Stat icon="school" v={`${lessonsDone}/${totalLessons}`} l="Lições" />
-        <Stat icon="target" v={s.answered ? `${Math.round((s.correct / s.answered) * 100)}%` : '—'} l="Precisão" />
+        <Stat icon="target" v={s.answered ? `${Math.round((s.correct / s.answered) * 100)}%` : '0%'} l="Precisão" />
         <Stat icon="diamond" v={s.perfect} l="Lições perfeitas" />
         <Stat icon="quiz" v={s.simulados.length} l="Simulados" />
       </div>

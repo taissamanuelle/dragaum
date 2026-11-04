@@ -44,7 +44,7 @@ export const uxUnits2: Unit[] = [
     color: '#f43f5e',
     lessons: [
       L('ux-ui-1', 'Hierarquia visual e layout', [
-        card('Hierarquia visual', 'Guia o olhar na ordem de importância. Ferramentas: **tamanho, peso, cor, contraste, posição, espaço**.\n\nTeste do "olhar desfocado" (*squint test*): aperte os olhos — o que ainda se destaca é o que domina a hierarquia.'),
+        card('Hierarquia visual', 'Guia o olhar na ordem de importância. Ferramentas: **tamanho, peso, cor, contraste, posição, espaço**.\n\nTeste do "olhar desfocado" (*squint test*): aperte os olhos, o que ainda se destaca é o que domina a hierarquia.'),
         card('Padrões de leitura', '- **Padrão F**: em páginas com muito texto, as pessoas leem as primeiras linhas e escaneiam a lateral esquerda.\n- **Padrão Z**: em páginas com pouco texto (landing pages), o olho percorre um "Z".\n\nColoque o essencial onde o olhar passa.'),
         card('Espaçamento e grid 8pt', 'Use uma escala de espaçamento consistente, em geral múltiplos de **8** (4, 8, 16, 24, 32, 48…).\n\nGrids de colunas: comum **4 colunas no mobile, 8 no tablet, 12 no desktop**, com gutters e margens definidos.\n\nRegra: **espaço interno ≤ espaço externo** (grupo coeso, separado dos outros).'),
         card('Uma ação primária', 'Cada tela deve ter, sempre que possível, **uma ação principal** clara. Botões secundários menos destacados, ações destrutivas separadas e confirmadas.'),
@@ -58,7 +58,7 @@ export const uxUnits2: Unit[] = [
       ]),
       L('ux-ui-2', 'Cor', [
         card('Modelos e harmonia', '- **HSL** (matiz, saturação, luminosidade) é ótimo para criar escalas.\n- Harmonias: **monocromática, análoga, complementar, tríade**.\n- **Regra 60-30-10**: 60% cor dominante (fundo), 30% secundária, 10% de destaque.'),
-        card('Cores semânticas', 'Cores com significado de **estado**:\n\n- **Sucesso**: verde\n- **Erro/perigo**: vermelho\n- **Alerta**: amarelo/laranja\n- **Informação**: azul\n\nNunca comunique **apenas com cor** — use também ícone e texto (daltonismo afeta cerca de 8% dos homens).'),
+        card('Cores semânticas', 'Cores com significado de **estado**:\n\n- **Sucesso**: verde\n- **Erro/perigo**: vermelho\n- **Alerta**: amarelo/laranja\n- **Informação**: azul\n\nNunca comunique **apenas com cor**: use também ícone e texto (daltonismo afeta cerca de 8% dos homens).'),
         card('Escalas tonais', 'Crie escalas (50 → 900) para cada cor. Ex.: `primary-500` para botões, `primary-100` para fundos suaves, `primary-700` para hover.\n\nNo **dark mode**, não basta inverter: reduza a saturação, evite preto puro (#000) e branco puro em grandes áreas, e use elevação com tons mais claros.'),
       ], [
         mc('Na regra 60-30-10, os 10% são para…', ['Fundo', 'Texto', 'Destaques', 'Bordas'], 2),
@@ -68,11 +68,11 @@ export const uxUnits2: Unit[] = [
         match('Cores semânticas', [['Sucesso', 'Verde'], ['Erro', 'Vermelho'], ['Alerta', 'Amarelo'], ['Informação', 'Azul']]),
       ]),
       L('ux-ui-3', 'Tipografia', [
-        card('Anatomia e classificação', '- **Serifadas**: com "pezinhos" (Times, Merriweather).\n- **Sem serifa**: (Inter, Roboto, Helvetica) — dominam interfaces.\n- **Monoespaçadas**: todos os caracteres com mesma largura (código).\n\nAltura-x maior = melhor legibilidade em tamanhos pequenos.'),
+        card('Anatomia e classificação', '- **Serifadas**: com "pezinhos" (Times, Merriweather).\n- **Sem serifa**: (Inter, Roboto, Helvetica), dominam interfaces.\n- **Monoespaçadas**: todos os caracteres com mesma largura (código).\n\nAltura-x maior = melhor legibilidade em tamanhos pequenos.'),
         card('Boas práticas', '- Texto corrido: **16px** como base no mobile/web.\n- **Altura de linha** de ~1,4 a 1,6 para corpo de texto.\n- **45 a 75 caracteres por linha** (ideal ~66).\n- 1 ou 2 famílias tipográficas no máximo.\n- Evite texto todo em CAIXA ALTA em parágrafos.'),
-        card('Escala tipográfica', 'Use uma **escala modular** (ex.: razão 1,25 — *major third*): 12, 16, 20, 25, 31, 39…\n\nDefina papéis: display, h1, h2, h3, body, caption, label. Hierarquia vem de **tamanho + peso + cor**, não só tamanho.'),
+        card('Escala tipográfica', 'Use uma **escala modular** (ex.: razão 1,25, *major third*): 12, 16, 20, 25, 31, 39…\n\nDefina papéis: display, h1, h2, h3, body, caption, label. Hierarquia vem de **tamanho + peso + cor**, não só tamanho.'),
       ], [
-        mc('Qual o comprimento de linha ideal para leitura confortável?', ['10–20 caracteres', '45–75 caracteres', '120–150 caracteres', 'Não importa'], 1),
+        mc('Qual o comprimento de linha ideal para leitura confortável?', ['10 a 20 caracteres', '45 a 75 caracteres', '120 a 150 caracteres', 'Não importa'], 1),
         mc('Altura de linha recomendada para corpo de texto:', ['1,0', '1,4 a 1,6', '2,5', '3,0'], 1),
         tf('Usar 5 famílias tipográficas numa interface reforça a hierarquia.', false, 'Use 1 ou 2. Hierarquia vem de tamanho, peso e cor.'),
         mc('Fontes onde todos os caracteres têm a mesma largura são…', ['Serifadas', 'Monoespaçadas', 'Script', 'Display'], 1),
@@ -81,10 +81,10 @@ export const uxUnits2: Unit[] = [
       L('ux-ui-4', 'Componentes, estados e motion', [
         card('Estados de componente', 'Todo componente interativo precisa de estados:\n\n**default · hover · focus · pressed/active · disabled · loading · error · success**\n\nE telas precisam de estados: **vazio (empty state), carregando, erro, parcial e ideal**.'),
         card('Botões', '- **Primário**: ação principal (1 por área).\n- **Secundário**: alternativa.\n- **Terciário/ghost**: ação de baixa ênfase.\n- **Destrutivo**: excluir, sair (vermelho, com confirmação).\n\nRótulos com **verbo + objeto**: "Salvar meta", "Começar lição".'),
-        card('Motion com propósito', 'Animação serve para **feedback, orientação e continuidade**, não decoração.\n\n- Microinterações: **100–200 ms**\n- Transições de tela: **200–500 ms**\n- Use *easing* (ease-out para entrar, ease-in para sair)\n- Respeite `prefers-reduced-motion`.'),
+        card('Motion com propósito', 'Animação serve para **feedback, orientação e continuidade**, não decoração.\n\n- Microinterações: **100 a 200 ms**\n- Transições de tela: **200 a 500 ms**\n- Use *easing* (ease-out para entrar, ease-in para sair)\n- Respeite `prefers-reduced-motion`.'),
       ], [
         mc('Qual estado indica navegação por teclado no elemento?', ['Hover', 'Focus', 'Disabled', 'Pressed'], 1),
-        mc('Duração típica de uma microinteração:', ['10 ms', '100–200 ms', '2 s', '5 s'], 1),
+        mc('Duração típica de uma microinteração:', ['10 ms', '100 a 200 ms', '2 s', '5 s'], 1),
         tf('Empty state é a tela que aparece quando ainda não há conteúdo, e deve orientar o próximo passo.', true),
         mc('Melhor rótulo para botão:', ['OK', 'Enviar', 'Clique aqui', 'Salvar meta diária'], 3),
         tf('Usuários com sensibilidade a movimento podem ativar "reduzir movimento", e o app deve respeitar.', true),
@@ -102,7 +102,7 @@ export const uxUnits2: Unit[] = [
       L('ux-a11y-1', 'WCAG e POUR', [
         card('WCAG', 'As **Web Content Accessibility Guidelines** são do **W3C** (WAI). Versão atual: **WCAG 2.2** (2023). A WCAG 3.0 está em desenvolvimento.\n\nNíveis de conformidade: **A** (mínimo), **AA** (padrão exigido pela maioria das leis) e **AAA** (máximo).'),
         card('Os 4 princípios: POUR', '- **Perceptível**: a informação pode ser percebida (alt text, legendas, contraste).\n- **Operável**: dá para operar (teclado, tempo suficiente, sem convulsões).\n- **Compreensível**: dá para entender (linguagem clara, comportamento previsível).\n- **Robusto**: funciona com tecnologias assistivas (HTML semântico).'),
-        card('No Brasil', '- **Lei Brasileira de Inclusão (Lei 13.146/2015)** — Estatuto da Pessoa com Deficiência — obriga acessibilidade em sites de empresas e órgãos públicos.\n- **eMAG**: Modelo de Acessibilidade em Governo Eletrônico.\n- **ABNT NBR 17225** (2025): norma brasileira de acessibilidade digital.'),
+        card('No Brasil', '- **Lei Brasileira de Inclusão (Lei 13.146/2015)**: Estatuto da Pessoa com Deficiência, obriga acessibilidade em sites de empresas e órgãos públicos.\n- **eMAG**: Modelo de Acessibilidade em Governo Eletrônico.\n- **ABNT NBR 17225** (2025): norma brasileira de acessibilidade digital.'),
       ], [
         mc('Quem publica as WCAG?', ['ISO', 'W3C', 'Google', 'ABNT'], 1),
         order('Ordene as letras do POUR', ['Perceptível', 'Operável', 'Compreensível', 'Robusto']),
@@ -145,7 +145,7 @@ export const uxUnits2: Unit[] = [
     lessons: [
       L('ux-wri-1', 'Microcopy que ajuda', [
         card('Princípios', 'Textos de interface devem ser: **claros, concisos e úteis** (e humanos).\n\n- Escreva para quem escaneia: **o mais importante primeiro**.\n- Use a palavra que o **usuário** usa.\n- Voz ativa: "Salvamos seu progresso" em vez de "O progresso foi salvo".'),
-        card('Voz × tom', '- **Voz**: personalidade da marca — **constante** (ex.: Dragaum é encorajador, divertido e direto).\n- **Tom**: varia com o **contexto** e a emoção do momento. Num erro de pagamento, menos piada e mais clareza.'),
+        card('Voz × tom', '- **Voz**: personalidade da marca, **constante** (ex.: Dragaum é encorajador, divertido e direto).\n- **Tom**: varia com o **contexto** e a emoção do momento. Num erro de pagamento, menos piada e mais clareza.'),
         card('Mensagens de erro', 'Boa mensagem de erro:\n\n1. Diz **o que aconteceu**\n2. Diz **por quê** (se ajudar)\n3. Diz **como resolver**\n\nSem culpar o usuário, sem jargão, sem "Ops!" vazio.\n\n**Ruim:** "Entrada inválida."\n**Bom:** "A senha precisa de pelo menos 8 caracteres."'),
         card('CTAs e empty states', '- CTA: **verbo + resultado** ("Começar a primeira lição").\n- Empty state: explique o que vai aparecer ali e **como começar**.\n- Confirmações destrutivas: repita a ação no botão ("Excluir conta", não "Sim").'),
       ], [
@@ -168,7 +168,7 @@ export const uxUnits2: Unit[] = [
       L('ux-ds-1', 'O que é um Design System', [
         card('Definição', 'Um Design System é um **conjunto vivo** de padrões, componentes, princípios, código e documentação que permite criar produtos consistentes em escala.\n\n**Style guide** (visual) e **biblioteca de componentes** são **partes** de um design system, não o todo.'),
         card('Camadas', '1. **Princípios** de design\n2. **Fundamentos/foundations**: cor, tipografia, espaçamento, grid, ícones, motion, voz\n3. **Design tokens**\n4. **Componentes** (design + código)\n5. **Padrões** (receitas: formulários, onboarding, erros)\n6. **Documentação** e **governança**'),
-        card('Exemplos famosos', '- **Material Design** — Google\n- **Human Interface Guidelines** — Apple (diretrizes)\n- **Carbon** — IBM\n- **Polaris** — Shopify\n- **Lightning** — Salesforce (pioneiro em design tokens)\n- **Fluent** — Microsoft\n- **Atlassian Design System**'),
+        card('Exemplos famosos', '- **Material Design**: Google\n- **Human Interface Guidelines**: Apple (diretrizes)\n- **Carbon**: IBM\n- **Polaris**: Shopify\n- **Lightning**: Salesforce (pioneiro em design tokens)\n- **Fluent**: Microsoft\n- **Atlassian Design System**'),
       ], [
         tf('Uma biblioteca de componentes no Figma, sozinha, já é um Design System completo.', false, 'Faltam princípios, tokens, código, documentação e governança.'),
         match('Ligue o DS à empresa', [['Material', 'Google'], ['Carbon', 'IBM'], ['Polaris', 'Shopify'], ['Lightning', 'Salesforce']]),
@@ -218,7 +218,7 @@ export const uxUnits2: Unit[] = [
     color: '#22c55e',
     lessons: [
       L('ux-met-1', 'HEART e GSM', [
-        card('Framework HEART (Google)', 'Criado por **Kerry Rodden** e equipe no Google (2010):\n\n- **Happiness** — satisfação (surveys, NPS)\n- **Engagement** — intensidade de uso\n- **Adoption** — novos usuários de um recurso\n- **Retention** — quem volta\n- **Task success** — eficiência e eficácia'),
+        card('Framework HEART (Google)', 'Criado por **Kerry Rodden** e equipe no Google (2010):\n\n- **Happiness**: satisfação (surveys, NPS)\n- **Engagement**: intensidade de uso\n- **Adoption**: novos usuários de um recurso\n- **Retention**: quem volta\n- **Task success**: eficiência e eficácia'),
         card('GSM: Goals → Signals → Metrics', 'Para cada letra do HEART:\n\n1. **Goal**: o que queremos?\n2. **Signal**: que comportamento indica sucesso?\n3. **Metric**: como medimos?\n\nEx.: Retention → aluno volta a estudar → % de usuários ativos no D7.'),
         card('Outras métricas', '- **AARRR (pirata)**: Acquisition, Activation, Retention, Referral, Revenue.\n- **CSAT**: satisfação com interação específica.\n- **CES**: esforço do cliente.\n- **Retenção D1/D7/D30**, **DAU/MAU** (stickiness).\n- **OKR**: Objetivo qualitativo + Resultados-chave mensuráveis.'),
       ], [
@@ -248,10 +248,10 @@ export const uxUnits2: Unit[] = [
     color: '#eab308',
     lessons: [
       L('ux-game-1', 'Motivação e hábitos', [
-        card('Teoria da Autodeterminação (SDT)', '**Deci & Ryan**: motivação intrínseca depende de 3 necessidades:\n\n- **Autonomia** — sentir que escolhe\n- **Competência** — sentir que evolui\n- **Relacionamento** — sentir conexão\n\nRecompensas externas mal usadas podem **minar** a motivação intrínseca (efeito de superjustificação).'),
+        card('Teoria da Autodeterminação (SDT)', '**Deci & Ryan**: motivação intrínseca depende de 3 necessidades:\n\n- **Autonomia**: sentir que escolhe\n- **Competência**: sentir que evolui\n- **Relacionamento**: sentir conexão\n\nRecompensas externas mal usadas podem **minar** a motivação intrínseca (efeito de superjustificação).'),
         card('Modelo de Fogg: B = MAP', '**BJ Fogg** (Stanford): um comportamento acontece quando **Motivação**, **Habilidade (Ability)** e um **Prompt** (gatilho) convergem no mesmo momento.\n\nQuer um hábito? Facilite muito (tiny habits) e coloque um gatilho certo.'),
-        card('Hook Model', '**Nir Eyal** (*Hooked*): **Gatilho → Ação → Recompensa variável → Investimento**.\n\nPoderoso — e por isso exige ética. Use para criar hábitos que a pessoa **quer** ter.'),
-        card('Octalysis', '**Yu-kai Chou**: 8 core drives — significado épico, desenvolvimento e realização, empoderamento da criatividade, propriedade, influência social, escassez, imprevisibilidade e perda/evitação.\n\nOs de cima ("white hat") geram bem-estar; os de baixo ("black hat") geram urgência e ansiedade.'),
+        card('Hook Model', '**Nir Eyal** (*Hooked*): **Gatilho → Ação → Recompensa variável → Investimento**.\n\nPoderoso, e por isso exige ética. Use para criar hábitos que a pessoa **quer** ter.'),
+        card('Octalysis', '**Yu-kai Chou**: 8 core drives: significado épico, desenvolvimento e realização, empoderamento da criatividade, propriedade, influência social, escassez, imprevisibilidade e perda/evitação.\n\nOs de cima ("white hat") geram bem-estar; os de baixo ("black hat") geram urgência e ansiedade.'),
       ], [
         match('Necessidades da SDT', [['Sentir que escolhe', 'Autonomia'], ['Sentir que evolui', 'Competência'], ['Sentir conexão', 'Relacionamento']]),
         mc('No modelo de Fogg (B = MAP), o "P" é…', ['Prêmio', 'Prompt (gatilho)', 'Persona', 'Preço'], 1),
@@ -261,7 +261,7 @@ export const uxUnits2: Unit[] = [
         mc('Um streak que causa ansiedade explora qual drive "black hat"?', ['Perda e evitação', 'Significado épico', 'Criatividade', 'Realização'], 0),
       ]),
       L('ux-game-2', 'Mecânicas e dark patterns', [
-        card('PBL não é tudo', '**Pontos, Badges e Leaderboards** são a camada superficial. Gamificação boa tem: **metas claras, feedback imediato, desafio equilibrado (flow), progresso visível e escolha**.\n\n**Flow** (Csikszentmihalyi): o desafio acompanha a habilidade — nem tédio, nem ansiedade.'),
+        card('PBL não é tudo', '**Pontos, Badges e Leaderboards** são a camada superficial. Gamificação boa tem: **metas claras, feedback imediato, desafio equilibrado (flow), progresso visível e escolha**.\n\n**Flow** (Csikszentmihalyi): o desafio acompanha a habilidade, nem tédio, nem ansiedade.'),
         card('Dark patterns (deceptive patterns)', 'Termo de **Harry Brignull** (2010). Exemplos:\n\n- **Confirmshaming**: "Não, prefiro continuar burro"\n- **Roach motel**: fácil entrar, difícil cancelar\n- **Sneak into basket**: itens adicionados sem pedir\n- **Urgência falsa**: contador que reinicia\n- **Disguised ads**: anúncio parecendo conteúdo\n- **Nagging**: pedir a mesma coisa repetidamente'),
         card('Repetição espaçada', 'Curva do esquecimento (**Ebbinghaus**): esquecemos rápido sem revisão. Revisar em **intervalos crescentes** (1, 3, 7, 14 dias…) fortalece a memória.\n\nO sistema de caixas de **Leitner** e o algoritmo **SM-2** (SuperMemo/Anki) aplicam isso. A aba Revisão do Dragaum usa caixas de Leitner!'),
       ], [

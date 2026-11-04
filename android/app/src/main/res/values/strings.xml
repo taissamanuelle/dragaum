@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Dragaum</string>
+    <string name="title_activity_main">Dragaum</string>
+    <string name="package_name">com.taissamanuelle.dragaum</string>
+    <string name="custom_url_scheme">com.taissamanuelle.dragaum</string>
+</resources>

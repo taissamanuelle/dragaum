@@ -1,0 +1,87 @@
+name: APK Android
+
+on:
+  push:
+    branches: [ccr-4b3ada24-d0wrxf, main]
+    paths-ignore: ['**.md']
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: apk-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 21
+
+      - name: Instalar dependências
+        run: npm ci
+
+      - name: Build web e conteúdo
+        run: |
+          npm run check
+          npm run build
+
+      - name: Copiar para o projeto Android
+        run: npx cap sync android
+
+      - name: Preparar chave de assinatura
+        env:
+          KEYSTORE_B64: ${{ secrets.DRAGAUM_KEYSTORE_BASE64 }}
+          KEYSTORE_PASSWORD: ${{ secrets.DRAGAUM_KEYSTORE_PASSWORD }}
+        run: |
+          if [ -n "$KEYSTORE_B64" ] && [ -n "$KEYSTORE_PASSWORD" ]; then
+            echo "$KEYSTORE_B64" | base64 -d > "$RUNNER_TEMP/dragaum.keystore"
+            echo "DRAGAUM_KEYSTORE_PASSWORD=$KEYSTORE_PASSWORD" >> "$GITHUB_ENV"
+            echo "Usando a chave fixa dos segredos do repositório."
+          else
+            # sem segredos: chave temporária só desta build (atualizar pode exigir desinstalar antes)
+            PASS=$(openssl rand -hex 16)
+            echo "::add-mask::$PASS"
+            keytool -genkeypair -keystore "$RUNNER_TEMP/dragaum.keystore" -alias dragaum -keyalg RSA -keysize 2048 \
+              -validity 10000 -storepass "$PASS" -keypass "$PASS" -dname "CN=Dragaum, O=Dragaum, C=BR"
+            echo "DRAGAUM_KEYSTORE_PASSWORD=$PASS" >> "$GITHUB_ENV"
+            echo "::warning::Segredos DRAGAUM_KEYSTORE_BASE64 e DRAGAUM_KEYSTORE_PASSWORD não configurados; usando chave temporária."
+          fi
+          echo "DRAGAUM_KEYSTORE=$RUNNER_TEMP/dragaum.keystore" >> "$GITHUB_ENV"
+
+      - name: Compilar APK
+        working-directory: android
+        run: |
+          chmod +x gradlew
+          ./gradlew assembleRelease --no-daemon
+
+      - name: Renomear
+        run: cp android/app/build/outputs/apk/release/app-release.apk Dragaum.apk
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: Dragaum-apk
+          path: Dragaum.apk
+
+      - name: Publicar na release "apk"
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: apk
+          name: Dragaum para Android
+          body: |
+            APK mais recente do Dragaum (build ${{ github.run_number }}, commit ${{ github.sha }}).
+            Baixe o arquivo Dragaum.apk no celular e toque para instalar.
+          files: Dragaum.apk
+          make_latest: true
+          prerelease: false

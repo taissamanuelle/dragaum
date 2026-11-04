@@ -1,6 +1,10 @@
 import { createClient, type Session } from '@supabase/supabase-js'
 import { useSyncExternalStore } from 'react'
+import { Capacitor } from '@capacitor/core'
 import { getState, setState, subscribe, type State } from './store'
+
+/** para onde os links de e-mail (confirmação, nova senha) devem levar */
+const SITE = Capacitor.isNativePlatform() ? 'https://dragaum.vercel.app' : location.origin
 
 /* ------------------------------------------------------------------ cliente */
 const URL = import.meta.env.VITE_SUPABASE_URL || 'https://mbhcoiohsirtmathuaao.supabase.co'
@@ -142,7 +146,7 @@ export function startSync() {
 
 /* ------------------------------------------------------------------ autenticação */
 export async function signUp(email: string, password: string) {
-  const { data, error } = await supabase.auth.signUp({ email, password, options: { emailRedirectTo: location.origin } })
+  const { data, error } = await supabase.auth.signUp({ email, password, options: { emailRedirectTo: SITE } })
   if (error) throw new Error(friendly(error))
   return { needsConfirm: !data.session }
 }
@@ -153,7 +157,7 @@ export async function signIn(email: string, password: string) {
 }
 
 export async function resetPassword(email: string) {
-  const { error } = await supabase.auth.resetPasswordForEmail(email, { redirectTo: location.origin })
+  const { error } = await supabase.auth.resetPasswordForEmail(email, { redirectTo: SITE })
   if (error) throw new Error(friendly(error))
 }
 

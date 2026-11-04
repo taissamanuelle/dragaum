@@ -33,6 +33,11 @@ for (const c of courseList) for (const u of c.units) for (const l of u.lessons) 
     if (e.t === 'order' && new Set(e.items).size !== e.items.length) errs.push(`${w}: itens repetidos`)
   })
 }
+// nada de travessões no app
+for (const c of courseList) for (const u of c.units) for (const l of u.lessons) {
+  const blob = JSON.stringify(l)
+  if (/[\u2013\u2014]/.test(blob)) errs.push(`${l.id}: contém travessão`)
+}
 console.log(`${courseList.length} trilhas · ${lessons} lições · ${cards} cards · ${exs} exercícios · simulado: ${simuladoPool().length} questões`)
 if (errs.length) { console.error(errs.join('\n')); process.exit(1) }
 console.log('conteúdo ok')

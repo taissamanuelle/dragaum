@@ -1,4 +1,4 @@
-// Dragaum service worker — offline first para assets, network-first para páginas.
+// Dragaum service worker: offline first para assets, network-first para páginas.
 const CACHE = 'dragaum-v3';
 const CORE = ['/', '/index.html', '/manifest.webmanifest', '/mascot/icon.webp', '/mascot/hello.webp', '/mascot/happy.webp', '/mascot/sad.webp', '/mascot/thinking.webp', '/mascot/angry.webp', '/icons/icon-192.png', '/icons/icon-512.png'];
 

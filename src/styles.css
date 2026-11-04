@@ -1,5 +1,5 @@
 /* ==========================================================================
-   Dragaum — design system
+   Dragaum design system
    Marca: vermelho dragão + creme + dourado · Seleção neutra: azul
    ========================================================================== */
 :root {
@@ -633,3 +633,85 @@ img.mascot { display: block; object-fit: contain; user-select: none; -webkit-use
 .cloud-promo { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--text); background: var(--select-soft); border-color: color-mix(in srgb, var(--select) 30%, transparent); }
 .cloud-text { flex: 1; display: flex; flex-direction: column; }
 .cloud-promo > .msr { color: var(--select); }
+
+/* ==========================================================================
+   Responsividade extra
+   ========================================================================== */
+.welcome-mascot { width: clamp(140px, 30vh, 230px); height: auto; }
+.wordmark { font-size: clamp(2.4rem, 9vw, 3.6rem); }
+.mascot { max-width: 100%; }
+
+/* celulares pequenos */
+@media (max-width: 380px) {
+  .content { padding: 0 12px 24px; }
+  .topbar { padding-left: 10px; padding-right: 10px; }
+  .pill { padding: 6px 5px; font-size: 0.92rem; }
+  .pill .msr { font-size: 1.3rem; }
+  .profile-head { gap: 12px; }
+  .avatar { width: 76px; height: 76px; border-radius: var(--r); }
+  .name-input { font-size: 1.25rem; }
+  .welcome-tagline { font-size: 1rem; }
+  .btn.big { padding: 0.8rem 1rem; font-size: 0.92rem; letter-spacing: 0.04em; }
+  .ex-q { font-size: 1.2rem; }
+  .prompt .ex-q { font-size: 1rem; }
+  .prompt-mascot { width: 74px; height: 74px; }
+  .option { padding: 12px 12px; gap: 10px; }
+  .option.small { font-size: 0.86rem; padding: 8px; }
+  .match, .match-col { gap: 8px; }
+  .theory-card { padding: 18px 16px 14px; }
+  .greet .mascot { width: 70px; height: 70px; }
+  .unit-banner h2 { font-size: 1.1rem; }
+  .stat { padding: 10px; column-gap: 8px; }
+  .stat-icon { width: 32px; height: 32px; }
+  .stat-v { font-size: 1.1rem; }
+  .end-stats { gap: 8px; }
+  .stat-box { min-width: 92px; }
+  .tab-label { font-size: 0.62rem; }
+}
+
+/* telas baixas: celular deitado */
+@media (max-height: 520px) and (orientation: landscape) {
+  .welcome { flex-direction: row; align-items: center; justify-content: center; gap: 40px; padding-top: 16px; padding-bottom: 16px; }
+  .welcome-hero { flex: 0 1 auto; }
+  .welcome-mascot { width: 130px; }
+  .welcome-glow { width: 240px; height: 240px; }
+  .welcome-actions { max-width: 340px; }
+  .unit-banner { position: static; }
+  .topbar { position: static; }
+  .session-top { padding-top: 8px; padding-bottom: 4px; }
+  .ex-body { padding-top: 4px; }
+  .prompt { margin-bottom: 12px; }
+  .prompt-mascot { width: 60px; height: 60px; }
+  .theory-prompt .mascot { width: 56px; height: 56px; }
+  .ex-q { font-size: 1.1rem; margin-bottom: 12px; }
+  .options:not(.tf) { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .option { min-height: 48px; padding: 10px 12px; }
+  .ex-footer { padding-top: 10px; padding-bottom: calc(10px + env(safe-area-inset-bottom)); }
+  .fb-mascot { width: 52px; height: 52px; }
+  .end { padding: 12px; }
+  .end-dragon { width: 110px; height: 110px; }
+  .stars .msr { font-size: 2.2rem; }
+  .stars .msr:nth-child(2) { font-size: 2.6rem; }
+  .speaker .mascot { width: 72px; height: 72px; }
+  .speaker.big .mascot { width: 100px; height: 100px; }
+  .modal { max-height: 96vh; overflow-y: auto; }
+  .ex-placa { margin: 0 0 10px; }
+  .ex-placa .placa { width: 88px; height: 88px; padding: 6px; }
+  .modal .mascot { width: 80px; height: 80px; }
+  .tabbar { padding-top: 2px; }
+  .tab-label { display: none; }
+  .main-col { padding-bottom: calc(56px + env(safe-area-inset-bottom)); }
+}
+
+/* tablets em pé: aproveita a largura */
+@media (min-width: 600px) and (max-width: 899px) {
+  .content { max-width: 720px; padding: 0 28px 28px; }
+  .tabbar { padding-left: max(6px, calc(50% - 360px)); padding-right: max(6px, calc(50% - 360px)); }
+  .ach-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+/* monitores grandes */
+@media (min-width: 1600px) {
+  .content { max-width: 720px; }
+  .shell { grid-template-columns: 280px minmax(0, 1fr) 400px; }
+}

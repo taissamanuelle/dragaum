@@ -12,7 +12,7 @@ export const dirUnits2: Unit[] = [
       L('dir-sin-1', 'Placas de regulamentação', [
         card('Tipos de sinalização (art. 87)', 'A sinalização se divide em: **vertical**, **horizontal**, **dispositivos de sinalização auxiliar**, **luminosa**, **sonora** e **gestos** do agente e do condutor.\n\nA vertical (placas) se divide em: **regulamentação**, **advertência** e **indicação**.'),
         card('Regulamentação = obrigação', 'Informa **obrigações, limitações, proibições ou restrições**. Desobedecer é **infração**.\n\nForma padrão: **circular**, fundo **branco**, orla **vermelha**, símbolo preto. Tarja diagonal vermelha = proibição.\n\nExceções de forma: **R-1 Parada obrigatória** (octógono) e **R-2 Dê a preferência** (triângulo com vértice para baixo).', 'R-1'),
-        card('R-2 Dê a preferência', 'Você deve **dar preferência** aos veículos da via em que vai entrar ou cruzar — reduzindo e parando se for preciso.', 'R-2'),
+        card('R-2 Dê a preferência', 'Você deve **dar preferência** aos veículos da via em que vai entrar ou cruzar, reduzindo e parando se for preciso.', 'R-2'),
         card('Proibições comuns', '- **R-3** Sentido proibido\n- **R-4a / R-4b** Proibido virar à esquerda / à direita\n- **R-5a** Proibido retornar à esquerda\n- **R-6a** Proibido estacionar\n- **R-6c** Proibido parar e estacionar\n- **R-7** Proibido ultrapassar\n- **R-19** Velocidade máxima permitida', 'R-6a'),
       ], [
         mc('O que significa esta placa?', ['Dê a preferência', 'Parada obrigatória', 'Proibido parar', 'Sentido proibido'], 1, 'R-1: parada obrigatória. Pare completamente antes da linha de retenção.', 'R-1'),
@@ -55,7 +55,7 @@ export const dirUnits2: Unit[] = [
       ]),
       L('dir-sin-4', 'Semáforo, agente e apito', [
         card('Ordem de prevalência (art. 89)', '1. **Ordens do agente de trânsito**\n2. **Indicações do semáforo**\n3. **Demais sinais** (placas, marcas)\n\nE as sinalizações prevalecem sobre as **normas gerais** de circulação.'),
-        card('Semáforo', '- **Verde**: siga, se o cruzamento estiver livre.\n- **Amarelo**: atenção — **pare se puder fazê-lo com segurança**; não acelere para "pegar".\n- **Vermelho**: pare antes da linha de retenção.\n- **Amarelo intermitente**: atenção, cruze com cautela, respeitando a preferência.'),
+        card('Semáforo', '- **Verde**: siga, se o cruzamento estiver livre.\n- **Amarelo**: atenção, **pare se puder fazê-lo com segurança**; não acelere para "pegar".\n- **Vermelho**: pare antes da linha de retenção.\n- **Amarelo intermitente**: atenção, cruze com cautela, respeitando a preferência.'),
         card('Gestos do agente', '- **Braço levantado verticalmente**, palma para frente: **parada obrigatória para todos** os veículos.\n- **Braços estendidos horizontalmente**, palma para frente: parada para veículos que venham de direções que **cortem** os braços.\n- **Braço estendido com movimento vertical** (palma para baixo): **diminuir a velocidade**.\n- Braço estendido com movimento de vaivém do antebraço: **seguir**.'),
         card('Sinais sonoros (apito)', '- **Um silvo breve**: **siga**\n- **Dois silvos breves**: **pare**\n- **Um silvo longo**: **diminua a marcha**\n- **Um silvo longo e um breve**: trânsito **impedido em todas as direções**\n- **Três silvos breves**: **acenda a lanterna**'),
       ], [
@@ -91,7 +91,7 @@ export const dirUnits2: Unit[] = [
       L('dir-circ-2', 'Ultrapassagem e mudança de faixa', [
         card('Como ultrapassar (art. 29, IX e X)', '- Ultrapasse **pela esquerda**.\n- Antes: verifique se **ninguém já iniciou** ultrapassagem atrás de você, se quem está à frente não sinalizou para ir à esquerda e se a faixa está livre por espaço suficiente.\n- **Sinalize** com o pisca, mantenha **distância lateral segura** e retorne à faixa sinalizando, sem cortar o ultrapassado.\n- Quem está sendo ultrapassado **não deve acelerar**.'),
         card('Onde é proibido ultrapassar (art. 32 e 33)', '- Em **curvas**, **aclives** e **declives** sem visibilidade\n- Em **pontes**, **viadutos** e **túneis** (salvo sinalização permitindo)\n- Nas **passagens de nível**\n- Nas **faixas de pedestres**\n- Em **interseções** e suas proximidades\n- Onde houver **linha contínua**'),
-        card('Ciclistas', 'Ao passar ou ultrapassar bicicleta, mantenha **distância lateral mínima de 1,5 m** e reduza a velocidade (art. 201 — infração **média**).'),
+        card('Ciclistas', 'Ao passar ou ultrapassar bicicleta, mantenha **distância lateral mínima de 1,5 m** e reduza a velocidade (art. 201, infração **média**).'),
       ], [
         mc('A ultrapassagem deve ser feita, em regra, pela…', ['Direita', 'Esquerda', 'Acostamento', 'Qualquer lado'], 1),
         mc('Distância lateral mínima ao ultrapassar um ciclista:', ['0,5 m', '1 m', '1,5 m', '3 m'], 2),
@@ -101,7 +101,7 @@ export const dirUnits2: Unit[] = [
         order('Ordene uma ultrapassagem segura', ['Verificar espelhos e faixa livre', 'Sinalizar com o pisca à esquerda', 'Ultrapassar com distância lateral segura', 'Sinalizar à direita e retornar sem cortar']),
       ]),
       L('dir-circ-3', 'Luzes, buzina e estacionamento', [
-        card('Luzes (art. 40)', '- **Luz baixa**: à **noite**, em **túneis**, e de **dia em rodovias de pista simples** (veículos sem luz de rodagem diurna — DRL).\n- **Luz alta**: em vias **não iluminadas**, exceto ao cruzar ou seguir outro veículo.\n- **Pisca-alerta**: em **imobilizações** ou situações de **emergência**, e quando a regulamentação determinar.\n- Motos: farol aceso **sempre** (dia e noite).\n- Na **neblina**: luz baixa (nunca alta) e farol de neblina, se houver.'),
+        card('Luzes (art. 40)', '- **Luz baixa**: à **noite**, em **túneis**, e de **dia em rodovias de pista simples** (veículos sem luz de rodagem diurna, a DRL).\n- **Luz alta**: em vias **não iluminadas**, exceto ao cruzar ou seguir outro veículo.\n- **Pisca-alerta**: em **imobilizações** ou situações de **emergência**, e quando a regulamentação determinar.\n- Motos: farol aceso **sempre** (dia e noite).\n- Na **neblina**: luz baixa (nunca alta) e farol de neblina, se houver.'),
         card('Buzina (art. 41)', 'Só em **toque breve**, para advertência, e **proibida entre 22h e 6h**.'),
         card('Estacionamento (art. 181)', '- Afastado da guia de **50 cm a 1 m**: **leve**; **mais de 1 m**: **grave**.\n- A **menos de 5 m** do bordo do alinhamento da via transversal (esquina): **média**.\n- Em **fila dupla**: **grave**.\n- Em vaga de **idoso** ou **PcD** sem credencial: **gravíssima**.\n- Sobre **calçada** ou **faixa de pedestres**: **grave**.'),
         card('Transporte de crianças (art. 64)', 'Crianças **menores de 10 anos** que não tenham atingido **1,45 m** devem ir no **banco traseiro**, em **dispositivo de retenção** adequado (Resolução 819/2021):\n\n- **Bebê-conforto** (voltado para trás): até 1 ano\n- **Cadeirinha**: de 1 a 4 anos\n- **Assento de elevação**: de 4 a 7 anos e meio\n- **Cinto do veículo** no banco traseiro: de 7,5 a 10 anos'),
@@ -126,7 +126,7 @@ export const dirUnits2: Unit[] = [
     lessons: [
       L('dir-def-1', 'Conceito e elementos', [
         card('O que é', 'Direção defensiva é **dirigir de modo a evitar acidentes**, apesar dos **erros dos outros** e das **condições adversas**.\n\nO acidente quase sempre é **evitável**: a maioria envolve falha humana.'),
-        card('Os 5 elementos', '1. **Conhecimento** — das leis e do veículo\n2. **Atenção** — ver e perceber os riscos\n3. **Previsão** — antecipar o que pode acontecer (imediata e mediata)\n4. **Decisão** — escolher a melhor ação\n5. **Habilidade** — executar corretamente as manobras'),
+        card('Os 5 elementos', '1. **Conhecimento**: das leis e do veículo\n2. **Atenção**: ver e perceber os riscos\n3. **Previsão**: antecipar o que pode acontecer (imediata e mediata)\n4. **Decisão**: escolher a melhor ação\n5. **Habilidade**: executar corretamente as manobras'),
         card('Condições adversas', 'O manual de direção defensiva lista 6:\n\n- **Luz** (ofuscamento, noite, sol de frente)\n- **Tempo** (chuva, neblina, vento)\n- **Via** (buracos, curvas, obras)\n- **Trânsito** (congestionamento, horários de pico)\n- **Veículo** (manutenção, pneus, freios)\n- **Condutor** (sono, álcool, emoções, medicamentos)'),
       ], [
         order('Ordene os elementos da direção defensiva', ['Conhecimento', 'Atenção', 'Previsão', 'Decisão', 'Habilidade']),
@@ -150,7 +150,7 @@ export const dirUnits2: Unit[] = [
       L('dir-def-3', 'Situações de risco', [
         card('Ponto cego e espelhos', 'Ponto cego é a área que **os espelhos não mostram**. Antes de mudar de faixa: espelhos + **olhar rápido por cima do ombro**.\n\nCaminhões e ônibus têm pontos cegos enormes: se você não vê o espelho deles, eles não te veem.'),
         card('Noite e ofuscamento', 'Se um farol alto te ofuscar: **reduza a velocidade** e **olhe para a borda direita** da pista. Não "revide" com luz alta.\n\nÀ noite, a visibilidade é menor: reduza a velocidade.'),
-        card('Fadiga e álcool', '- Pare a cada **2 horas** em viagens longas ou ao primeiro sinal de sono.\n- Álcool reduz reflexos, visão periférica e aumenta a autoconfiança — **"se beber, não dirija"**.\n- Medicamentos (antialérgicos, calmantes) também afetam.'),
+        card('Fadiga e álcool', '- Pare a cada **2 horas** em viagens longas ou ao primeiro sinal de sono.\n- Álcool reduz reflexos, visão periférica e aumenta a autoconfiança, **"se beber, não dirija"**.\n- Medicamentos (antialérgicos, calmantes) também afetam.'),
         card('Tipos de colisão', '- **Traseira** (falta de distância)\n- **Frontal** (a mais grave; ultrapassagem indevida)\n- **Lateral** e **transversal** (cruzamentos)\n- **Capotamento** e **tombamento**\n- **Atropelamento**\n- **Choque com objeto fixo**\n\nA colisão **frontal** é a mais violenta: as velocidades se somam.'),
       ], [
         mc('Se for ofuscado pelo farol alto de outro carro, deve…', ['Revidar com luz alta', 'Reduzir e olhar para a borda direita da pista', 'Fechar os olhos', 'Frear bruscamente'], 1),
@@ -172,7 +172,7 @@ export const dirUnits2: Unit[] = [
       L('dir-ps-1', 'Sinalizar, chamar ajuda e avaliar', [
         card('Sequência de ação', '1. **Mantenha a calma** e garanta **sua segurança**\n2. **Sinalize o local** (pisca-alerta, triângulo)\n3. **Acione o socorro**\n4. **Avalie as vítimas** (consciência, respiração)\n5. Preste o socorro possível **até a ajuda chegar**'),
         card('Sinalizar o local', 'Ligue o **pisca-alerta** e coloque o **triângulo** a uma distância que permita aos outros reagirem. Regra prática: **1 passo longo para cada km/h** da velocidade da via (via de 80 km/h → ~80 passos).\n\nEm curvas, sinalize **antes** da curva.'),
-        card('Telefones de emergência', '- **192** — SAMU\n- **193** — Corpo de Bombeiros\n- **190** — Polícia Militar\n- **191** — Polícia Rodoviária Federal\n- **199** — Defesa Civil\n\nInforme: **o quê**, **onde** (referência), **quantas vítimas** e **estado** delas.'),
+        card('Telefones de emergência', '- **192**: SAMU\n- **193**: Corpo de Bombeiros\n- **190**: Polícia Militar\n- **191**: Polícia Rodoviária Federal\n- **199**: Defesa Civil\n\nInforme: **o quê**, **onde** (referência), **quantas vítimas** e **estado** delas.'),
       ], [
         match('Ligue o telefone', [['SAMU', '192'], ['Bombeiros', '193'], ['Polícia Militar', '190'], ['PRF', '191']]),
         mc('Num acidente, a primeira preocupação deve ser…', ['Remover as vítimas', 'Garantir a própria segurança e sinalizar o local', 'Tirar fotos', 'Dar água às vítimas'], 1),
@@ -182,7 +182,7 @@ export const dirUnits2: Unit[] = [
       ]),
       L('dir-ps-2', 'Cuidados com as vítimas', [
         card('Não faça', '- **Não remova** a vítima, exceto se houver risco iminente (incêndio, explosão, atropelamento).\n- **Não retire o capacete** do motociclista.\n- **Não dê** água, comida ou remédios.\n- Não tente "colocar no lugar" fraturas.'),
-        card('Faça', '- **Hemorragia**: compressão direta com pano limpo.\n- **Fratura**: imobilize **na posição em que se encontra**.\n- **Queimadura**: água corrente fria/temperatura ambiente; não fure bolhas, não passe nada.\n- **Vítima consciente**: converse, acalme, mantenha aquecida.\n- **Parada cardiorrespiratória**: RCP com compressões fortes e rápidas (**100 a 120/min**, 5–6 cm no adulto) até o socorro chegar.'),
+        card('Faça', '- **Hemorragia**: compressão direta com pano limpo.\n- **Fratura**: imobilize **na posição em que se encontra**.\n- **Queimadura**: água corrente fria/temperatura ambiente; não fure bolhas, não passe nada.\n- **Vítima consciente**: converse, acalme, mantenha aquecida.\n- **Parada cardiorrespiratória**: RCP com compressões fortes e rápidas (**100 a 120/min**, 5 a 6 cm no adulto) até o socorro chegar.'),
         card('Omissão de socorro', '- **Infração** (art. 176): condutor **envolvido** em acidente com vítima que deixa de prestar socorro → **gravíssima ×5** + suspensão.\n- **Crime** (art. 304): deixar de prestar socorro imediato ou, não podendo, deixar de **solicitar auxílio** da autoridade.\n\nChamar o socorro **também é socorrer**.'),
       ], [
         tf('Deve-se retirar o capacete de um motociclista acidentado para ajudá-lo a respirar.', false, 'Não retire o capacete: pode agravar lesões na coluna cervical.'),
@@ -204,7 +204,7 @@ export const dirUnits2: Unit[] = [
       L('dir-amb-1', 'Poluição e direção econômica', [
         card('Poluentes', '- **CO** (monóxido de carbono): tóxico, inodoro.\n- **NOx** (óxidos de nitrogênio) e **HC** (hidrocarbonetos): formam smog e ozônio.\n- **Material particulado** (fuligem do diesel).\n- **CO₂**: efeito estufa.\n\nO **PROCONVE** (Programa de Controle da Poluição do Ar por Veículos Automotores) define limites de emissão.'),
         card('Direção econômica', '- Trocar de marcha na **rotação certa**, sem "esticar".\n- Evitar **acelerações e frenagens bruscas**; antecipar o trânsito.\n- **Pneus calibrados** (calibrar a frio).\n- Manutenção em dia (filtro de ar, velas, óleo).\n- Evitar peso desnecessário e motor ligado parado.'),
-        card('Ruído e descarte', '- **Escapamento** alterado/ruidoso: infração **grave** (art. 230, XI).\n- **Som alto** audível do lado de fora: **grave** (art. 228).\n- **Atirar objetos** ou lixo pela janela: **média** (art. 172).\n- Óleo, baterias e pneus usados: **logística reversa** — devolva em postos e lojas.'),
+        card('Ruído e descarte', '- **Escapamento** alterado/ruidoso: infração **grave** (art. 230, XI).\n- **Som alto** audível do lado de fora: **grave** (art. 228).\n- **Atirar objetos** ou lixo pela janela: **média** (art. 172).\n- Óleo, baterias e pneus usados: **logística reversa**: devolva em postos e lojas.'),
       ], [
         mc('Gás tóxico, sem cor e sem cheiro emitido pelo escapamento:', ['CO₂', 'CO (monóxido de carbono)', 'O₂', 'Vapor d\'água'], 1),
         mc('O programa que controla emissões de veículos no Brasil é o…', ['PROCONVE', 'PROCON', 'DENATRAN', 'INMETRO'], 0),
@@ -232,7 +232,7 @@ export const dirUnits2: Unit[] = [
     color: '#64748b',
     lessons: [
       L('dir-mec-1', 'Motor e sistemas', [
-        card('Motor de 4 tempos', '1. **Admissão** — entra a mistura ar + combustível\n2. **Compressão** — o pistão comprime a mistura\n3. **Combustão (explosão)** — a vela gera a faísca\n4. **Escape** — os gases saem\n\nMotores flex funcionam com gasolina, etanol ou qualquer mistura dos dois.'),
+        card('Motor de 4 tempos', '1. **Admissão**: entra a mistura ar + combustível\n2. **Compressão**: o pistão comprime a mistura\n3. **Combustão (explosão)**: a vela gera a faísca\n4. **Escape**: os gases saem\n\nMotores flex funcionam com gasolina, etanol ou qualquer mistura dos dois.'),
         card('Sistemas principais', '- **Arrefecimento**: radiador, bomba d\'água, aditivo. **Nunca abra o reservatório com o motor quente.**\n- **Lubrificação**: óleo reduz atrito. Verifique o nível com o motor frio/desligado e o carro no plano.\n- **Elétrico**: bateria (dá a partida) e **alternador** (recarrega com o motor ligado).\n- **Freios**: disco/tambor, pastilhas, fluido de freio. **ABS** evita o travamento das rodas.\n- **Transmissão**: embreagem + câmbio.\n- **Suspensão**: amortecedores e molas (estabilidade).'),
       ], [
         order('Ordene os 4 tempos do motor', ['Admissão', 'Compressão', 'Combustão', 'Escape']),
@@ -243,8 +243,8 @@ export const dirUnits2: Unit[] = [
         mc('Peça que gera a faísca para a combustão:', ['Vela de ignição', 'Alternador', 'Bomba d\'água', 'Embreagem'], 0),
       ]),
       L('dir-mec-2', 'Painel e pneus', [
-        card('Cores das luzes do painel', '- **Vermelha**: **perigo** — pare assim que for seguro (pressão do óleo, temperatura, freio, bateria).\n- **Amarela/laranja**: **atenção** — verifique logo (injeção, ABS, combustível na reserva).\n- **Verde/azul**: **informação** — algo ligado (farol, pisca; azul = luz alta).'),
-        card('Pneus', '- **Sulco mínimo**: **1,6 mm** — indicado pelo **TWI** (marcador de desgaste nos sulcos).\n- **Calibragem** conforme o manual, **a frio**, incluindo o **estepe**.\n- Pneu careca: infração **grave** (art. 230, XVIII — veículo em mau estado).\n- **Rodízio** periódico e alinhamento/balanceamento evitam desgaste irregular.'),
+        card('Cores das luzes do painel', '- **Vermelha**: **perigo**, pare assim que for seguro (pressão do óleo, temperatura, freio, bateria).\n- **Amarela/laranja**: **atenção**, verifique logo (injeção, ABS, combustível na reserva).\n- **Verde/azul**: **informação**, algo ligado (farol, pisca; azul = luz alta).'),
+        card('Pneus', '- **Sulco mínimo**: **1,6 mm**, indicado pelo **TWI** (marcador de desgaste nos sulcos).\n- **Calibragem** conforme o manual, **a frio**, incluindo o **estepe**.\n- Pneu careca: infração **grave** (art. 230, XVIII, veículo em mau estado).\n- **Rodízio** periódico e alinhamento/balanceamento evitam desgaste irregular.'),
         card('Revisão rápida (antes de viajar)', '**Óleo · água/arrefecimento · fluido de freio · pneus e estepe · luzes · palhetas · documentos.**'),
       ], [
         mc('Luz vermelha da pressão do óleo acendeu com o carro andando. O que fazer?', ['Continuar até o destino', 'Parar assim que for seguro e desligar o motor', 'Acelerar', 'Ignorar se o carro estiver normal'], 1),
@@ -265,14 +265,14 @@ export const dirUnits2: Unit[] = [
     lessons: [
       L('dir-prat-1', 'Como é avaliado o exame prático', [
         card('Novo sistema de pontuação', 'Com a Resolução 1.020/2025 e o **Manual Brasileiro de Exames de Direção Veicular** (SENATRAN), o exame **deixou de ter faltas eliminatórias**. Cada infração soma pontos pelo peso:\n\n- **Leve**: 1 ponto\n- **Média**: 2 pontos\n- **Grave**: 4 pontos\n- **Gravíssima**: 6 pontos\n\nO candidato começa com **zero** e é **aprovado se não ultrapassar 10 pontos**.'),
-        card('Atenção aos detalhes', '- Condutas que **não são infração** (ex.: deixar o motor **apagar**) **não pontuam**, mas a banca pode **interromper** o exame se houver falta de domínio do veículo.\n- A **baliza** deixou de ser etapa eliminatória.\n- A implantação variou por estado (alguns DETRANs adaptaram em datas diferentes) — confira o seu.\n\n**Como era antes**: eliminatória reprovava na hora; grave = 3, média = 2, leve = 1; reprovado com mais de 3 pontos.'),
+        card('Atenção aos detalhes', '- Condutas que **não são infração** (ex.: deixar o motor **apagar**) **não pontuam**, mas a banca pode **interromper** o exame se houver falta de domínio do veículo.\n- A **baliza** deixou de ser etapa eliminatória.\n- A implantação variou por estado (alguns DETRANs adaptaram em datas diferentes), confira o seu.\n\n**Como era antes**: eliminatória reprovava na hora; grave = 3, média = 2, leve = 1; reprovado com mais de 3 pontos.'),
         card('Antes de dar a partida', '1. Ajustar o **banco**\n2. Ajustar **espelhos** (interno e externos)\n3. Colocar o **cinto**\n4. Verificar portas fechadas\n5. Pedal da embreagem, câmbio em ponto morto\n6. Dar a partida e conferir o painel\n7. Sinalizar com o pisca antes de sair'),
       ], [
         match('Pontos no novo exame prático', [['Leve', '1 ponto'], ['Média', '2 pontos'], ['Grave', '4 pontos'], ['Gravíssima', '6 pontos']]),
         mc('Com o novo sistema, o candidato é aprovado se…', ['Não cometer nenhum erro', 'Não ultrapassar 10 pontos', 'Fizer menos de 3 pontos', 'Acertar a baliza'], 1),
         mc('Um candidato cometeu uma gravíssima (6) e uma grave (4). Resultado:', ['Reprovado', 'Aprovado com 10 pontos', 'Reprovado por gravíssima', 'Refaz só a baliza'], 1, '6 + 4 = 10, que não ultrapassa o limite.'),
         mc('Duas gravíssimas no exame resultam em…', ['Aprovação', 'Reprovação (12 pontos)', 'Advertência', 'Exame de novo só da teoria'], 1),
-        tf('Deixar o motor apagar soma pontos no novo exame prático.', false, 'Não é infração de trânsito, então não pontua — mas, se mostrar falta de domínio, a banca pode interromper o exame.'),
+        tf('Deixar o motor apagar soma pontos no novo exame prático.', false, 'Não é infração de trânsito, então não pontua. Mas, se mostrar falta de domínio, a banca pode interromper o exame.'),
         order('Ordene os ajustes antes de sair', ['Ajustar o banco', 'Ajustar os espelhos', 'Colocar o cinto', 'Dar a partida', 'Sinalizar e sair']),
       ]),
       L('dir-prat-2', 'Baliza, rampa e conversões', [
@@ -297,8 +297,8 @@ export const dirUnits2: Unit[] = [
     lessons: [
       L('dir-moto-1', 'Regras para motociclistas', [
         card('Obrigatório (art. 54 e 55)', '- **Capacete** com viseira ou óculos de proteção, **afivelado**\n- **Farol aceso** dia e noite\n- Segurar o guidom **com as duas mãos**\n- Vestuário de proteção conforme o CONTRAN\n\n**Sem capacete** (condutor ou passageiro): **gravíssima** + **suspensão** (art. 244, I e II).'),
-        card('Passageiro', '- Usar capacete, sentado no assento atrás do condutor, segurando-se.\n- **Proibido transportar criança menor de 10 anos** ou que não tenha condições de cuidar da própria segurança (art. 244, V) — **gravíssima**.'),
-        card('Exame prático de moto', 'Circuito clássico em área fechada: **ziguezague** entre cones, **prancha** de equilíbrio, **sonorizadores**, **curvas em "L"** e **manobra em "8"** — sem colocar o pé no chão e sem derrubar cones. Depois, circulação em via pública, conforme o DETRAN.'),
+        card('Passageiro', '- Usar capacete, sentado no assento atrás do condutor, segurando-se.\n- **Proibido transportar criança menor de 10 anos** ou que não tenha condições de cuidar da própria segurança (art. 244, V), **gravíssima**.'),
+        card('Exame prático de moto', 'Circuito clássico em área fechada: **ziguezague** entre cones, **prancha** de equilíbrio, **sonorizadores**, **curvas em "L"** e **manobra em "8"**: sem colocar o pé no chão e sem derrubar cones. Depois, circulação em via pública, conforme o DETRAN.'),
       ], [
         mc('Motociclista sem capacete comete infração…', ['Leve', 'Média', 'Grave', 'Gravíssima com suspensão'], 3),
         tf('O farol da moto deve ficar aceso também durante o dia.', true),

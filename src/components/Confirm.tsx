@@ -4,7 +4,7 @@ import { Mascot, type Mood } from './Mascot'
 type Req = { title: string; text?: string; ok: string; cancel: string; mood: Mood; danger?: boolean; resolve: (v: boolean) => void }
 let push: ((r: Req) => void) | null = null
 
-/** confirmação com o mascote — substitui window.confirm */
+/** confirmação com o mascote, no lugar do window.confirm */
 export function ask(opts: Omit<Req, 'resolve' | 'ok' | 'cancel' | 'mood'> & Partial<Pick<Req, 'ok' | 'cancel' | 'mood'>>): Promise<boolean> {
   return new Promise((resolve) => {
     const r: Req = { ok: 'Confirmar', cancel: 'Cancelar', mood: 'sad', ...opts, resolve }

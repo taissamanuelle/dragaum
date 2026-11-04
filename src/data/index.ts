@@ -3,6 +3,8 @@ import { uxUnits1 } from './ux1'
 import { uxUnits2 } from './ux2'
 import { dirUnits1 } from './dir1'
 import { dirUnits2 } from './dir2'
+import { extraUx } from './extra-ux'
+import { extraDir } from './extra-dir'
 
 export const courses: Record<CourseId, Course> = {
   ux: {
@@ -22,6 +24,11 @@ export const courses: Record<CourseId, Course> = {
     units: [...dirUnits1, ...dirUnits2],
   },
 }
+
+/** anexa as lições de aprofundamento às unidades */
+for (const extra of [extraUx, extraDir])
+  for (const c of Object.values(courses))
+    for (const u of c.units) if (extra[u.id]) u.lessons = [...u.lessons, ...extra[u.id]]
 
 /** paleta quente da identidade Dragaum, aplicada em ciclo às unidades */
 const PALETTE = ['#e11d2a', '#ea580c', '#be123c', '#c2410c', '#db2777', '#b45309', '#dc2626', '#9f1239']

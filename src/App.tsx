@@ -66,7 +66,7 @@ function Router() {
   return (
     <div className="shell">
       <aside className="sidebar">
-        <a className="logo" href="#/" aria-label="Dragaum — início">
+        <a className="logo" href="#/" aria-label="Dragaum, início">
           <img src="/mascot/icon.webp" alt="" width={48} height={48} />
           <span>Dragaum</span>
         </a>

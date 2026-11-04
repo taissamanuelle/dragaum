@@ -82,7 +82,7 @@ export function LoginScreen({ onBack, onDone }: { onBack: () => void; onDone: ()
 const STATUS: Record<string, { icon: string; text: string; cls: string }> = {
   syncing: { icon: 'cloud_sync', text: 'Sincronizando…', cls: 'info' },
   synced: { icon: 'cloud_done', text: 'Progresso salvo na nuvem', cls: 'ok' },
-  offline: { icon: 'cloud_off', text: 'Sem internet — salva quando voltar', cls: 'warn' },
+  offline: { icon: 'cloud_off', text: 'Sem internet. Salva quando voltar', cls: 'warn' },
   error: { icon: 'error', text: 'Não foi possível sincronizar', cls: 'bad' },
   'signed-out': { icon: 'cloud_off', text: 'Só neste aparelho', cls: 'warn' },
 }

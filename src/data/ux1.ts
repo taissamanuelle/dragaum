@@ -12,7 +12,7 @@ export const uxUnits1: Unit[] = [
       L('ux-fund-1', 'O que é UX (e o que não é)', [
         card('UX = experiência completa', 'User Experience é **tudo** o que a pessoa vive ao interagir com um produto, serviço ou marca: antes, durante e depois do uso.\n\nO termo foi popularizado por **Don Norman** na Apple, nos anos 1990. Ele queria um nome que cobrisse mais do que a interface: atendimento, embalagem, manual, sensação.'),
         card('UI é uma parte da UX', '**UI (User Interface)** é a camada que a pessoa vê e toca: telas, botões, cores, tipografia, ícones.\n\n- UX pergunta: *a pessoa consegue atingir o objetivo dela?*\n- UI pergunta: *a interface comunica e facilita a ação?*\n- **Product Design** junta UX + UI + estratégia de negócio.'),
-        card('Usabilidade (ISO 9241-11)', 'A norma ISO 9241-11 define usabilidade como a medida em que um produto pode ser usado por usuários específicos para alcançar objetivos específicos com:\n\n- **Eficácia** — consegue completar a tarefa?\n- **Eficiência** — com quanto esforço/tempo?\n- **Satisfação** — como se sente usando?\n\nTudo isso **em um contexto de uso** específico.'),
+        card('Usabilidade (ISO 9241-11)', 'A norma ISO 9241-11 define usabilidade como a medida em que um produto pode ser usado por usuários específicos para alcançar objetivos específicos com:\n\n- **Eficácia**: consegue completar a tarefa?\n- **Eficiência**: com quanto esforço/tempo?\n- **Satisfação**: como se sente usando?\n\nTudo isso **em um contexto de uso** específico.'),
         card('Os 5 componentes de Nielsen', 'Jakob Nielsen descreve usabilidade em 5 atributos:\n\n- **Learnability** (fácil de aprender)\n- **Efficiency** (rápido depois de aprendido)\n- **Memorability** (fácil de lembrar após um tempo sem usar)\n- **Errors** (poucos erros, fáceis de recuperar)\n- **Satisfaction** (agradável)'),
       ], [
         mc('Quem popularizou o termo "User Experience"?', ['Jakob Nielsen', 'Don Norman', 'Steve Jobs', 'Dieter Rams'], 1, 'Don Norman cunhou/popularizou o termo na Apple nos anos 90 para englobar toda a experiência, não só a interface.'),
@@ -28,7 +28,7 @@ export const uxUnits1: Unit[] = [
         card('Os dois golfos de Norman', 'Don Norman (*O Design do Dia a Dia*) descreve dois abismos:\n\n- **Golfo da execução**: "como eu faço o que quero?"\n- **Golfo da avaliação**: "o que aconteceu? deu certo?"\n\nBom design diminui os dois: ações claras e feedback visível.'),
       ], [
         mc('O que o usuário acredita sobre como o sistema funciona é o…', ['Modelo conceitual', 'Modelo mental', 'Wireframe', 'Mapa de empatia'], 1),
-        mc('Qual tipo de carga cognitiva o designer deve eliminar?', ['Intrínseca', 'Extrínseca', 'Germânica', 'Nenhuma'], 1, 'A carga extrínseca é causada pela interface, não pela tarefa — é o "esforço desperdiçado".'),
+        mc('Qual tipo de carga cognitiva o designer deve eliminar?', ['Intrínseca', 'Extrínseca', 'Germânica', 'Nenhuma'], 1, 'A carga extrínseca é causada pela interface, não pela tarefa: é o "esforço desperdiçado".'),
         tf('Quando o usuário toca num botão e nada parece acontecer, ele está preso no golfo da avaliação.', true, 'Ele não consegue avaliar se a ação deu certo. Falta feedback.'),
         match('Ligue', [['"Como faço isso?"', 'Golfo da execução'], ['"Deu certo?"', 'Golfo da avaliação'], ['Esforço por design ruim', 'Carga extrínseca'], ['Complexidade da própria tarefa', 'Carga intrínseca']]),
         mc('Qual estratégia reduz carga cognitiva?', ['Mostrar todas as opções de uma vez', 'Usar padrões que o usuário já conhece', 'Criar ícones originais sem rótulo', 'Exigir que memorize códigos'], 1),
@@ -70,8 +70,8 @@ export const uxUnits1: Unit[] = [
       L('ux-leis-2', 'Jakob, Doherty, Tesler e Postel', [
         card('Lei de Jakob', 'Usuários passam a maior parte do tempo **em outros sites/apps**. Eles esperam que o seu funcione como os que já conhecem.\n\nInovar no visual tudo bem; inovar em padrões básicos (carrinho, busca, login) costuma confundir.'),
         card('Limiar de Doherty', 'Produtividade dispara quando sistema e usuário interagem em menos de **400 ms**.\n\nSe não der para ser rápido, **pareça** rápido: skeleton screens, feedback imediato, carregamento otimista.'),
-        card('Lei de Tesler (conservação da complexidade)', 'Toda aplicação tem uma complexidade que **não pode ser removida**, só transferida. A pergunta é: quem lida com ela — o sistema ou o usuário?\n\nEx.: preencher o endereço pelo CEP move a complexidade para o sistema.'),
-        card('Lei de Postel (robustez)', '"Seja conservador no que envia e liberal no que aceita."\n\nAceite telefone com ou sem parênteses, CPF com ou sem pontos, datas em formatos variados — e devolva sempre num padrão consistente.'),
+        card('Lei de Tesler (conservação da complexidade)', 'Toda aplicação tem uma complexidade que **não pode ser removida**, só transferida. A pergunta é: quem lida com ela: o sistema ou o usuário?\n\nEx.: preencher o endereço pelo CEP move a complexidade para o sistema.'),
+        card('Lei de Postel (robustez)', '"Seja conservador no que envia e liberal no que aceita."\n\nAceite telefone com ou sem parênteses, CPF com ou sem pontos, datas em formatos variados, e devolva sempre num padrão consistente.'),
       ], [
         mc('Colocar o carrinho de compras no canto superior direito, como em quase todo e-commerce, segue a…', ['Lei de Jakob', 'Lei de Hick', 'Lei de Miller', 'Lei de Pareto'], 0),
         mc('O limiar de Doherty fala em respostas abaixo de…', ['100 ms', '400 ms', '1 s', '3 s'], 1),
@@ -82,7 +82,7 @@ export const uxUnits1: Unit[] = [
       ]),
       L('ux-leis-3', 'Vieses e efeitos de memória', [
         card('Peak-end e posição serial', '- **Regra do pico-final**: julgamos uma experiência pelo **momento mais intenso** e pelo **final**, não pela média. Capriche no final (tela de conclusão!).\n- **Efeito de posição serial**: lembramos melhor do **primeiro** e do **último** item de uma lista.'),
-        card('Von Restorff e estética-usabilidade', '- **Efeito Von Restorff (isolamento)**: o item diferente dos demais é o mais lembrado. Use para o CTA principal — com moderação.\n- **Efeito estética-usabilidade**: pessoas percebem designs bonitos como mais fáceis de usar e toleram pequenos problemas.'),
+        card('Von Restorff e estética-usabilidade', '- **Efeito Von Restorff (isolamento)**: o item diferente dos demais é o mais lembrado. Use para o CTA principal, com moderação.\n- **Efeito estética-usabilidade**: pessoas percebem designs bonitos como mais fáceis de usar e toleram pequenos problemas.'),
         card('Zeigarnik e gradiente de objetivo', '- **Efeito Zeigarnik**: tarefas incompletas são mais lembradas → barras de progresso e "perfil 70% completo".\n- **Efeito do gradiente de objetivo**: a motivação aumenta quanto **mais perto** estamos da meta (cartão fidelidade que já vem com 2 carimbos).\n- **Princípio de Pareto**: ~80% dos efeitos vêm de ~20% das causas → priorize.'),
       ], [
         mc('Uma tela de conclusão de curso caprichada aproveita a…', ['Regra do pico-final', 'Lei de Hick', 'Lei de Postel', 'Navalha de Occam'], 0),
@@ -102,10 +102,10 @@ export const uxUnits1: Unit[] = [
     color: '#06b6d4',
     lessons: [
       L('ux-gestalt-1', 'Proximidade, semelhança e região comum', [
-        card('O que é Gestalt', 'Escola da psicologia alemã (Wertheimer, Köhler, Koffka — início do séc. XX). Ideia central: **"o todo é diferente da soma das partes"**. O cérebro organiza estímulos em padrões automaticamente.\n\nO princípio-mãe é a **pregnância (Prägnanz)**: tendemos a perceber a forma mais simples e estável possível.'),
+        card('O que é Gestalt', 'Escola da psicologia alemã (Wertheimer, Köhler, Koffka, início do séc. XX). Ideia central: **"o todo é diferente da soma das partes"**. O cérebro organiza estímulos em padrões automaticamente.\n\nO princípio-mãe é a **pregnância (Prägnanz)**: tendemos a perceber a forma mais simples e estável possível.'),
         card('Proximidade', 'Elementos **próximos** são percebidos como um grupo.\n\nEm UI: label colado no seu campo, mais espaço entre grupos do que dentro deles. Espaçamento é a ferramenta de agrupamento mais barata que existe.'),
         card('Semelhança', 'Elementos com **aparência parecida** (cor, forma, tamanho) parecem ter a mesma função.\n\nTodos os links com a mesma cor; todas as alternativas do quiz com o mesmo estilo. Se algo parece igual, deve se comportar igual.'),
-        card('Região comum', 'Elementos dentro de uma **mesma área delimitada** (card, borda, fundo) são vistos como grupo — mesmo que estejam distantes.\n\nÉ o princípio por trás dos cards.'),
+        card('Região comum', 'Elementos dentro de uma **mesma área delimitada** (card, borda, fundo) são vistos como grupo, mesmo que estejam distantes.\n\nÉ o princípio por trás dos cards.'),
       ], [
         mc('O label que fica mais perto do campo de baixo do que do de cima confunde por causa do princípio da…', ['Proximidade', 'Semelhança', 'Continuidade', 'Simetria'], 0),
         mc('Cards que agrupam título, imagem e botão usam principalmente…', ['Fechamento', 'Região comum', 'Destino comum', 'Figura-fundo'], 1),
@@ -154,7 +154,7 @@ export const uxUnits1: Unit[] = [
       ]),
       L('ux-heur-2', 'Heurísticas 6 a 10', [
         card('6. Reconhecimento em vez de memorização', 'Minimize a carga de memória: **deixe opções, ações e informações visíveis**.\n\nEx.: buscas recentes, autocompletar, menus visíveis em vez de comandos que precisam ser lembrados.'),
-        card('7. Flexibilidade e eficiência de uso', '**Aceleradores** — invisíveis para iniciantes — agilizam a vida de usuários experientes.\n\nEx.: atalhos de teclado, gestos, favoritos, personalização.'),
+        card('7. Flexibilidade e eficiência de uso', '**Aceleradores**: invisíveis para iniciantes, agilizam a vida de usuários experientes.\n\nEx.: atalhos de teclado, gestos, favoritos, personalização.'),
         card('8. Estética e design minimalista', 'Interfaces não devem conter informação **irrelevante ou raramente necessária**. Cada unidade extra compete com as relevantes.\n\nMinimalista ≠ "branco e vazio". É **foco no essencial**.'),
         card('9. Ajude a reconhecer, diagnosticar e recuperar erros', 'Mensagens de erro em **linguagem simples** (sem códigos), indicando **precisamente o problema** e **sugerindo uma solução**.\n\nUse sinais visuais tradicionais (texto vermelho, ícone).'),
         card('10. Ajuda e documentação', 'O ideal é não precisar de explicação, mas pode ser necessário documentar. Ajuda deve ser **fácil de buscar, focada na tarefa e contextual** (tooltips, onboarding, FAQ ao lado do campo).'),
@@ -169,11 +169,11 @@ export const uxUnits1: Unit[] = [
       L('ux-heur-3', 'Fazendo uma avaliação heurística', [
         card('O método', 'Avaliação heurística é um método de **inspeção**: especialistas analisam a interface contra as heurísticas. Não envolve usuários.\n\n1. Defina escopo e tarefas\n2. Cada avaliador analisa **sozinho** (2 passadas)\n3. Registra problema + heurística + evidência\n4. Consolida em grupo\n5. Classifica severidade e recomenda'),
         card('Quantos avaliadores?', 'Nielsen recomenda **3 a 5 avaliadores**. Um avaliador sozinho encontra ~35% dos problemas; cinco encontram ~75%.\n\nOs avaliadores devem trabalhar de forma independente para evitar viés.'),
-        card('Escala de severidade (0–4)', '- **0** — não é um problema de usabilidade\n- **1** — cosmético: corrigir se sobrar tempo\n- **2** — menor: baixa prioridade\n- **3** — maior: alta prioridade\n- **4** — catástrofe: corrigir antes de lançar\n\nSeveridade combina **frequência**, **impacto** e **persistência**.'),
+        card('Escala de severidade (0 a 4)', '- **0**: não é um problema de usabilidade\n- **1**: cosmético: corrigir se sobrar tempo\n- **2**: menor: baixa prioridade\n- **3**: maior: alta prioridade\n- **4**: catástrofe: corrigir antes de lançar\n\nSeveridade combina **frequência**, **impacto** e **persistência**.'),
       ], [
         mc('Quantos avaliadores Nielsen recomenda numa avaliação heurística?', ['1', '3 a 5', '10 a 15', '30'], 1),
         tf('Avaliação heurística é feita com usuários reais executando tarefas.', false, 'É um método de inspeção feito por especialistas. Teste com usuários é outro método.'),
-        mc('Na escala de Nielsen, severidade 4 significa…', ['Cosmético', 'Problema menor', 'Catástrofe — corrigir antes de lançar', 'Não é problema'], 2),
+        mc('Na escala de Nielsen, severidade 4 significa…', ['Cosmético', 'Problema menor', 'Catástrofe: corrigir antes de lançar', 'Não é problema'], 2),
         mc('A severidade de um problema combina frequência, impacto e…', ['Persistência', 'Beleza', 'Custo', 'Cor'], 0),
         order('Ordene as etapas da avaliação heurística', ['Definir escopo e tarefas', 'Avaliadores inspecionam sozinhos', 'Registrar problemas com evidência', 'Consolidar em grupo', 'Classificar severidade e recomendar']),
         tf('Avaliadores devem trabalhar juntos desde o início para não perder problemas.', false, 'Eles avaliam independentemente primeiro; a consolidação vem depois.'),
@@ -214,9 +214,9 @@ export const uxUnits1: Unit[] = [
       ]),
       L('ux-res-3', 'Teste de usabilidade', [
         card('O que é', 'Participantes reais executam **tarefas** realistas enquanto você observa. Pode ser:\n\n- **Moderado** ou **não moderado**\n- **Presencial** ou **remoto**\n\nO protocolo **think aloud** (pensar em voz alta) pede que a pessoa verbalize o que pensa.'),
-        card('5 usuários bastam?', 'Nielsen & Landauer (1993): **5 usuários** encontram cerca de **85%** dos problemas de usabilidade — para testes **qualitativos e iterativos**.\n\nMelhor: 3 rodadas de 5 do que 1 de 15. Para métricas quantitativas, são necessárias amostras maiores (~20+).'),
+        card('5 usuários bastam?', 'Nielsen & Landauer (1993): **5 usuários** encontram cerca de **85%** dos problemas de usabilidade, para testes **qualitativos e iterativos**.\n\nMelhor: 3 rodadas de 5 do que 1 de 15. Para métricas quantitativas, são necessárias amostras maiores (~20+).'),
         card('Escrevendo tarefas', 'Tarefas devem ser **realistas, acionáveis e sem dar a resposta**.\n\n**Ruim:** "Clique em Configurações e mude a meta diária."\n**Bom:** "Você quer estudar só 5 minutos por dia. Ajuste o app para isso."'),
-        card('Métricas do teste', '- **Taxa de sucesso** da tarefa\n- **Tempo na tarefa**\n- **Erros**\n- **SEQ** (Single Ease Question, 1–7) após cada tarefa\n- **SUS** ao final'),
+        card('Métricas do teste', '- **Taxa de sucesso** da tarefa\n- **Tempo na tarefa**\n- **Erros**\n- **SEQ** (Single Ease Question, 1 a 7) após cada tarefa\n- **SUS** ao final'),
       ], [
         mc('Segundo Nielsen, quantos usuários encontram ~85% dos problemas num teste qualitativo?', ['1', '5', '20', '100'], 1),
         mc('Qual tarefa está bem escrita?', ['Clique em "Perfil" e depois em "Editar".', 'Você mudou de cidade. Atualize seu endereço no app.', 'Teste o menu.', 'Você gosta da tela de perfil?'], 1, 'Realista e sem entregar o caminho.'),
@@ -228,26 +228,26 @@ export const uxUnits1: Unit[] = [
         card('Card sorting', 'Participantes **agrupam e nomeiam** cartões de conteúdo. Revela o modelo mental para estruturar a navegação.\n\n- **Aberto**: participante cria e nomeia as categorias.\n- **Fechado**: categorias já existem.\n- **Híbrido**: mistura dos dois.'),
         card('Tree testing', 'O inverso do card sorting: testa se as pessoas **encontram** itens numa estrutura de navegação **sem visual** (só a "árvore" de menus). Mede sucesso, caminho direto e primeiro clique.'),
         card('Surveys', 'Questionários para muitas pessoas. Cuidados:\n\n- Uma ideia por pergunta (evite "pergunta dupla")\n- Escalas balanceadas (Likert de 5 ou 7 pontos)\n- Opção "não sei/não se aplica"\n- Teste piloto antes de disparar\n- Curto: cada pergunta a mais reduz a taxa de resposta'),
-        card('SUS e NPS', '- **SUS (System Usability Scale)**: 10 afirmações alternando positivas e negativas, escala 1–5, resultado de 0 a 100. **Média de mercado ≈ 68**.\n- **NPS**: "De 0 a 10, quanto recomendaria?" Promotores (9–10) − Detratores (0–6). Mede lealdade, não usabilidade.'),
+        card('SUS e NPS', '- **SUS (System Usability Scale)**: 10 afirmações alternando positivas e negativas, escala 1 a 5, resultado de 0 a 100. **Média de mercado ≈ 68**.\n- **NPS**: "De 0 a 10, quanto recomendaria?" Promotores (9 a 10) menos Detratores (0 a 6). Mede lealdade, não usabilidade.'),
       ], [
         mc('Card sorting em que o participante cria e nomeia as categorias é…', ['Fechado', 'Aberto', 'Tree testing', 'A/B'], 1),
         mc('Para validar se as pessoas acham "Trocar senha" na sua navegação, sem o visual, use…', ['Card sorting aberto', 'Tree testing', 'Entrevista', 'Heatmap'], 1),
         mc('A média de referência do SUS é aproximadamente…', ['50', '68', '85', '100'], 1),
         tf('"O app é rápido e bonito?" é uma pergunta dupla e deve ser evitada em surveys.', true),
         mc('No NPS, quem são os detratores?', ['Notas 0 a 6', 'Notas 7 e 8', 'Notas 9 e 10', 'Quem não respondeu'], 0),
-        match('Ligue', [['Agrupar cartões', 'Card sorting'], ['Encontrar na árvore', 'Tree testing'], ['10 afirmações, 0–100', 'SUS'], ['Promotores − detratores', 'NPS']]),
+        match('Ligue', [['Agrupar cartões', 'Card sorting'], ['Encontrar na árvore', 'Tree testing'], ['10 afirmações, 0 a 100', 'SUS'], ['Promotores menos detratores', 'NPS']]),
       ]),
       L('ux-res-5', 'Síntese: de dados a insights', [
         card('Affinity mapping', 'Coloque cada observação num post-it e **agrupe por afinidade** até surgirem temas. Também chamado de diagrama de afinidade ou KJ method.'),
-        card('Insight ≠ observação', '- **Observação**: "4 de 6 pessoas não encontraram o botão de revisão."\n- **Insight**: "Pessoas veem a revisão como castigo, então ignoram áreas com esse nome — querem sentir progresso, não correção."\n\nInsight explica o **porquê** e abre oportunidades.'),
-        card('Artefatos de síntese', '- **Persona**: arquétipo baseado em dados (objetivos, dores, contexto).\n- **Proto-persona**: baseada em suposições — deve ser validada.\n- **Mapa de empatia**: diz, pensa, faz, sente.\n- **Jornada do usuário**: etapas, ações, emoções, pontos de contato, oportunidades.\n- **Jobs to be Done (JTBD)**: "Quando [situação], eu quero [motivação], para [resultado]".'),
+        card('Insight ≠ observação', '- **Observação**: "4 de 6 pessoas não encontraram o botão de revisão."\n- **Insight**: "Pessoas veem a revisão como castigo, então ignoram áreas com esse nome, querem sentir progresso, não correção."\n\nInsight explica o **porquê** e abre oportunidades.'),
+        card('Artefatos de síntese', '- **Persona**: arquétipo baseado em dados (objetivos, dores, contexto).\n- **Proto-persona**: baseada em suposições, deve ser validada.\n- **Mapa de empatia**: diz, pensa, faz, sente.\n- **Jornada do usuário**: etapas, ações, emoções, pontos de contato, oportunidades.\n- **Jobs to be Done (JTBD)**: "Quando [situação], eu quero [motivação], para [resultado]".'),
       ], [
         mc('Agrupar post-its de observações por temas é…', ['Affinity mapping', 'Card sorting', 'Tree testing', 'Crazy 8s'], 0),
         mc('Qual é um insight (e não só observação)?', ['3 usuários clicaram no logo', 'Usuários evitam a revisão porque ela parece castigo, não progresso', 'O botão é azul', 'A sessão durou 40 min'], 1),
         tf('Proto-persona é baseada em suposições e precisa ser validada com pesquisa.', true),
         match('Quadrantes do mapa de empatia', [['O que fala', 'Diz'], ['O que passa na cabeça', 'Pensa'], ['Ações observáveis', 'Faz'], ['Emoções', 'Sente']]),
         mc('"Quando estou no ônibus, quero revisar placas rapidinho, para chegar confiante na prova" é um…', ['Job story (JTBD)', 'Requisito técnico', 'Persona', 'Wireframe'], 0),
-        tf('Uma jornada do usuário mapeia só as telas do app.', false, 'Mapeia etapas, ações, pensamentos, emoções e pontos de contato — dentro e fora do produto.'),
+        tf('Uma jornada do usuário mapeia só as telas do app.', false, 'Mapeia etapas, ações, pensamentos, emoções e pontos de contato, dentro e fora do produto.'),
       ]),
     ],
   },
@@ -260,7 +260,7 @@ export const uxUnits1: Unit[] = [
     lessons: [
       L('ux-proc-1', 'Double Diamond', [
         card('Origem', 'Criado pelo **Design Council** (Reino Unido), publicado em **2004/2005** após estudar como empresas como Apple, LEGO e Microsoft faziam design. Em 2019 foi ampliado no **Framework for Innovation**.'),
-        card('Os 4 Ds', '**Diamante 1 — o problema certo**\n- **Discover**: divergir, entender o problema (pesquisa).\n- **Define**: convergir, definir o desafio (problem statement).\n\n**Diamante 2 — a solução certa**\n- **Develop**: divergir, gerar e prototipar soluções.\n- **Deliver**: convergir, testar, refinar e lançar.'),
+        card('Os 4 Ds', '**Diamante 1: o problema certo**\n- **Discover**: divergir, entender o problema (pesquisa).\n- **Define**: convergir, definir o desafio (problem statement).\n\n**Diamante 2: a solução certa**\n- **Develop**: divergir, gerar e prototipar soluções.\n- **Deliver**: convergir, testar, refinar e lançar.'),
         card('Divergir e convergir', 'Cada diamante **abre** (explora muitas possibilidades) e **fecha** (escolhe e foca).\n\nO processo **não é linear**: é comum voltar ao Discover após um teste revelar algo novo.'),
         card('Framework for Innovation (2019)', 'Adiciona 4 **princípios**:\n\n1. Coloque as pessoas em primeiro lugar\n2. Comunique de forma visual e inclusiva\n3. Colabore e co-crie\n4. Itere, itere, itere\n\nE os **métodos**: Explorar, Moldar, Construir. Mais a **liderança** e o **engajamento**.'),
       ], [
@@ -274,7 +274,7 @@ export const uxUnits1: Unit[] = [
       ]),
       L('ux-proc-2', 'Design Thinking', [
         card('O que é', 'Abordagem **centrada no ser humano** para resolver problemas complexos, popularizada pela **IDEO** (Tim Brown, David Kelley) e pela **Stanford d.school**.\n\nEquilibra três lentes: **desejabilidade** (pessoas), **viabilidade** (negócio) e **praticabilidade/factibilidade** (tecnologia).'),
-        card('As 5 etapas (d.school)', '1. **Empatizar** — entender pessoas\n2. **Definir** — enquadrar o problema\n3. **Idear** — gerar muitas ideias\n4. **Prototipar** — tornar tangível\n5. **Testar** — aprender com usuários\n\nTambém não é linear: testes levam de volta à empatia ou à ideação.'),
+        card('As 5 etapas (d.school)', '1. **Empatizar**: entender pessoas\n2. **Definir**: enquadrar o problema\n3. **Idear**: gerar muitas ideias\n4. **Prototipar**: tornar tangível\n5. **Testar**: aprender com usuários\n\nTambém não é linear: testes levam de volta à empatia ou à ideação.'),
         card('How Might We (Como poderíamos…)', 'Transforma um problema em oportunidade de design.\n\n- Insight: "Alunos esquecem placas depois de uma semana."\n- HMW: **Como poderíamos** fazer as placas voltarem no momento certo?\n\nNem muito amplo ("como poderíamos melhorar o trânsito?"), nem muito estreito (já com a solução dentro).'),
         card('Ideação', 'Regras de brainstorm da IDEO: adie o julgamento, busque **quantidade**, construa sobre as ideias dos outros, incentive ideias malucas, seja visual, uma conversa por vez, foco no tema.\n\nTécnicas: **Crazy 8s** (8 ideias em 8 minutos), SCAMPER, brainwriting, analogias.'),
       ], [
@@ -288,7 +288,7 @@ export const uxUnits1: Unit[] = [
       L('ux-proc-3', 'Lean UX, Design Sprint e priorização', [
         card('Lean UX', 'Proposto por **Jeff Gothelf e Josh Seiden**. Foco em **resultados**, não entregáveis.\n\nCiclo **Construir → Medir → Aprender** (do Lean Startup, Eric Ries). Escreva hipóteses:\n\n*"Acreditamos que [mudança] para [pessoas] resultará em [resultado]. Saberemos que deu certo quando [métrica]."*'),
         card('MVP', '**Produto Mínimo Viável**: a menor coisa que permite aprender com usuários reais. Não é "produto pela metade", é um **experimento**.'),
-        card('Design Sprint (Google Ventures)', 'Criado por **Jake Knapp** no Google Ventures. **5 dias**:\n\n1. **Segunda** — Mapear (entender e escolher o alvo)\n2. **Terça** — Esboçar (soluções individuais)\n3. **Quarta** — Decidir (votação, storyboard)\n4. **Quinta** — Prototipar (fachada realista)\n5. **Sexta** — Testar (5 usuários)'),
+        card('Design Sprint (Google Ventures)', 'Criado por **Jake Knapp** no Google Ventures. **5 dias**:\n\n1. **Segunda**: Mapear (entender e escolher o alvo)\n2. **Terça**: Esboçar (soluções individuais)\n3. **Quarta**: Decidir (votação, storyboard)\n4. **Quinta**: Prototipar (fachada realista)\n5. **Sexta**: Testar (5 usuários)'),
         card('Priorização', '- **Matriz impacto × esforço**: comece pelos "quick wins" (alto impacto, baixo esforço).\n- **MoSCoW**: Must, Should, Could, Won\'t.\n- **RICE**: (Reach × Impact × Confidence) ÷ Effort.\n- **Modelo Kano**: básicos, de desempenho e encantadores.'),
       ], [
         order('Ordene os dias do Design Sprint', ['Mapear', 'Esboçar', 'Decidir', 'Prototipar', 'Testar']),
